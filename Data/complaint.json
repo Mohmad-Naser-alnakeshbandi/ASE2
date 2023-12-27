@@ -1,0 +1,52 @@
+[
+  {
+    "description": "Paper Jam: The printer is frequently experiencing paper jams, disrupting the printing process and causing inconvenience to the user. Despite multiple attempts to clear the jam, the issue persists.",
+    "callNumber": "456-789-0123",
+    "email": "support@printerco.com",
+    "customerID": "C456",
+    "location": "NewYork-Broadway-45",
+    "printerID": "C123",
+    "complaintID": "P012",
+    "date": 1642025723086
+  },
+  {
+    "description": "Color Misalignment: The printed documents exhibit misalignment issues, especially noticeable in color prints. The colors do not align correctly, resulting in distorted and unsatisfactory printouts.",
+    "callNumber": "789-012-3456",
+    "email": "helpdesk@printersupport.com",
+    "customerID": "C456",
+    "location": "LosAngeles-MainAve-67",
+    "printerID": "P789",
+    "complaintID": "CID789",
+    "date": 1642025723087
+  },
+  {
+    "description": "Ink Smudging: The printer consistently smudges ink on printed pages, causing a mess and rendering documents unreadable. Cleaning the printhead and replacing cartridges have not resolved the issue.",
+    "callNumber": "987-654-3210",
+    "email": "help@printerissues.net",
+    "customerID": "C789",
+    "location": "Chicago-OakStreet-89",
+    "printerID": "P345",
+    "complaintID": "CID987",
+    "date": 1642025723088
+  },
+  {
+    "description": "Wireless Connectivity: The printer is facing connectivity issues with the wireless network. Despite entering the correct credentials, the printer frequently loses connection, disrupting the printing process.",
+    "callNumber": "654-321-0987",
+    "email": "techsupport@printerhelp.com",
+    "customerID": "C654",
+    "location": "SanFrancisco-MarketSt-34",
+    "printerID": "P678",
+    "complaintID": "CID654",
+    "date": 1642025723089
+  },
+  {
+    "description": "Ghosting Problem: The printer is producing faint, ghost-like images on printed pages, especially noticeable in grayscale prints. Adjusting print settings and replacing toner cartridges have not resolved the ghosting issue.",
+    "callNumber": "321-098-7654",
+    "email": "ghostbusters@printerissues.com",
+    "customerID": "C987",
+    "location": "Seattle-PineStreet-56",
+    "printerID": "P890",
+    "complaintID": "CID321",
+    "date": 1642025723090
+  }
+]

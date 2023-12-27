@@ -26,8 +26,8 @@ public class ComplaintDescription {
         }
     }
     private void validateDescription(String description) {
-        if (description == null || description.length() > 25) {
-            throw new Errors("Description should have at least 25 characters");
+        if (description == null || description.length() > 10) {
+            throw new Errors("Description should have at least 10 characters");
         }
     }
     @Override

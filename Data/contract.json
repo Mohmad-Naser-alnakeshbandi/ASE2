@@ -1,0 +1,137 @@
+[
+  {
+    "customerID": "C123",
+    "Name": "John Doe",
+    "printerID": [
+      "P012",
+      "P022",
+      "P032"
+    ]
+  },
+  {
+    "customerID": "C456",
+    "Name": "Jane Smith",
+    "printerID": [
+      "P456",
+      "P789",
+      "P012"
+    ]
+  },
+  {
+    "customerID": "C789",
+    "Name": "Robert Johnson",
+    "printerID": [
+      "P012",
+      "P345",
+      "P678"
+    ]
+  },
+  {
+    "customerID": "C987",
+    "Name": "Emily Davis",
+    "printerID": [
+      "P890",
+      "P678",
+      "P012"
+    ]
+  },
+  {
+    "customerID": "C654",
+    "Name": "Michael White",
+    "printerID": [
+      "P678",
+      "P890",
+      "P012"
+    ]
+  },
+  {
+    "customerID": "C111",
+    "Name": "Alice Johnson",
+    "printerID": [
+      "P123",
+      "P456",
+      "P789"
+    ]
+  },
+  {
+    "customerID": "C222",
+    "Name": "Bob Miller",
+    "printerID": [
+      "P234",
+      "P567",
+      "P012"
+    ]
+  },
+  {
+    "customerID": "C333",
+    "Name": "Eva Martinez",
+    "printerID": [
+      "P345",
+      "P678",
+      "P012"
+    ]
+  },
+  {
+    "customerID": "C444",
+    "Name": "David Brown",
+    "printerID": [
+      "P456",
+      "P789",
+      "P890"
+    ]
+  },
+  {
+    "customerID": "C555",
+    "Name": "Sophie Clark",
+    "printerID": [
+      "P567",
+      "P012",
+      "P345"
+    ]
+  },
+  {
+    "customerID": "C666",
+    "Name": "Oliver Taylor",
+    "printerID": [
+      "P678",
+      "P890",
+      "P012"
+    ]
+  },
+  {
+    "customerID": "C777",
+    "Name": "Grace Wilson",
+    "printerID": [
+      "P789",
+      "P012",
+      "P345"
+    ]
+  },
+  {
+    "customerID": "C888",
+    "Name": "Daniel Smith",
+    "printerID": [
+      "P890",
+      "P012",
+      "P678"
+    ]
+  },
+  {
+    "customerID": "C999",
+    "Name": "Mia Davis",
+    "printerID": [
+      "P012",
+      "P345",
+      "P567"
+    ]
+  },
+  {
+    "customerID": "C000",
+    "Name": "Noah Jones",
+    "printerID": [
+      "P678",
+      "P890",
+      "P012"
+    ]
+  }
+]

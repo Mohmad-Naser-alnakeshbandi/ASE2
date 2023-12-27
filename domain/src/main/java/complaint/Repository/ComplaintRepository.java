@@ -7,5 +7,6 @@ import java.util.Optional;
 public interface ComplaintRepository
 {
     List<Complaint> getAll() throws IOException;
-    public void getComplaintByID(long id) throws IOException;
+    void getComplaintByID(long id) throws IOException;
+    void addComplaint(Complaint complaint) throws IOException;
 }
