@@ -1,7 +1,5 @@
 package complaint.valueobject;
-
 import errors.Errors;
-
 import java.util.Objects;
 
 public class PrinterID {
@@ -10,17 +8,15 @@ public class PrinterID {
     public String getPrinterID() {
         return printerID;
     }
-
-    public PrinterID(long initialValue) {
-        validatePrinterID(initialValue);
-        // Format the ID to start with "P" followed by 3 numbers
-        this.printerID = String.format("P%03d", initialValue);
+    public PrinterID(String printerID) {
+        validatePrinterID(printerID);
+        this.printerID = printerID;
     }
 
-    private void validatePrinterID(long initialValue) {
-        // Add validation logic as needed
-        if (initialValue < 0) {
-            throw new Errors("Invalid printer ID value");
+    private void validatePrinterID(String printerID) {
+        // Ensure the printer ID follows the format "P" followed by 3 numbers
+        if (printerID.matches("P\\d{2}")) {
+            throw new Errors("Invalid printer ID format");
         }
     }
 

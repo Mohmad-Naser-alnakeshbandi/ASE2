@@ -1,29 +1,31 @@
 package complaint.valueobject;
 
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class ComplaintID {
-    private final AtomicLong customerIDValue;
-
-    public ComplaintID(long initialValue) {
-        this.customerIDValue = new AtomicLong(initialValue);
+    private  String complaintId;
+    public String getComplaintId()
+    {
+        int upperBound = 1000;
+        // Create an instance of Random class
+        Random random = new Random();
+        // Generate a random number between 100 and 999 (inclusive)
+        int randomThreeDigitNumber = random.nextInt(upperBound - 100) + 100;
+        return String.format("C%03d", randomThreeDigitNumber);
     }
-
-    public String getCustomerIDValue() {
-        // Format the ID to start with "C" followed by 3 numbers
-        return String.format("C%03d", customerIDValue.get());
-    }
+    public ComplaintID() {}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ComplaintID)) return false;
-        return customerIDValue.get() == ((ComplaintID) o).customerIDValue.get();
+        if (!(o instanceof ComplaintID that)) return false;
+        return Objects.equals(getComplaintId(), that.getComplaintId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerIDValue);
+        return Objects.hash(getComplaintId());
     }
 }

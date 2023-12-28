@@ -62,7 +62,7 @@ public class CustomerLocation {
     }
 
     private void validateNumber(String number) {
-        if (!number.isBlank()) {
+        if (number.isBlank()) {
             throw new Errors("Location number cannot be empty");
         }
     }

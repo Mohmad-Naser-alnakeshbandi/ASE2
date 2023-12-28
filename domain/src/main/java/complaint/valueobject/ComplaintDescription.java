@@ -21,12 +21,12 @@ public class ComplaintDescription {
         this.body = body;
     }
     private void validateTitle(String title) {
-        if (title == null || title.length() > 10) {
+        if (title.length() < 10) {
             throw new Errors("Title should have at least 10 characters");
         }
     }
     private void validateDescription(String description) {
-        if (description == null || description.length() > 10) {
+        if (description.length() < 10) {
             throw new Errors("Description should have at least 10 characters");
         }
     }

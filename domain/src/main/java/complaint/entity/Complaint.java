@@ -9,7 +9,7 @@ public class Complaint {
     private final ComplaintDescription description;
     private final CustomerCallNumber callNumber;
     private final CustomerEmail email;
-    private final ComplaintID customerID;
+    private final CustomerID customerID;
     private final CustomerLocation location;
     private final PrinterID printerID;
     private final ComplaintID complaintID;
@@ -26,14 +26,12 @@ public class Complaint {
         this.date = builder.date; // Set date
     }
 
-    // Add getters for your fields
-
     public static class Builder {
 
         private ComplaintDescription description;
         private CustomerCallNumber callNumber;
         private CustomerEmail email;
-        private ComplaintID customerID;
+        private CustomerID customerID;
         private CustomerLocation location;
         private PrinterID printerID;
         private ComplaintID complaintID;
@@ -58,7 +56,7 @@ public class Complaint {
             return this;
         }
 
-        public Builder customerID(ComplaintID customerID) {
+        public Builder customerID(CustomerID customerID) {
             this.customerID = customerID;
             return this;
         }
@@ -87,18 +85,29 @@ public class Complaint {
             return new Complaint(this);
         }
     }
+    @Override
+    public String toString() {
+        return    "description: " + description.getTitle() +": " + description.getDescription() + "\n"
+                + "callNumber: "+ callNumber.getCallNumber() + "\n"
+                + "email: "+ email.getEmail() + "\n"
+                + "customerID: "+ customerID.getCustomerID() + "\n"
+                + "location: "+location.getCountry() +"-"+location.getCity()+"-"+location.getStreet()+"-"+location.getNumber() + "\n"
+                + "printerID: "+ printerID.getPrinterID()+ "\n"
+                + "complaintID: "+ complaintID.getComplaintId()+"\n"
+                + "date:"+ date.toString();
+    }
 }
 
-
 /*
- Complaint complaint = new Complaint.Builder()
-                .description(description)
-                .callNumber(callNumber)
-                .email(email)
-                .customerID(customerID)
-                .location(location)
-                .printerID(printerID)
-                .complaintID(complaintID)
-                .date(date)
-                .build();
+*  @Override
+    public String toString() {
+        return    "description: " + description.getTitle() +" " + description.getTitle() + "\n"
+                + "callNumber: "+ callNumber.getCallNumber() + "\n"
+                + "email: "+ email.getEmail() + "\n"
+                + "customerID: "+ customerID. + "\n"
+                + "location: "+location.getCountry() +"-"+location.getCity()+"-"+location.getStreet()+"-"+location.getNumber() + "\n"
+                + "printerID: "+ printerID.getPrinterID()+ "\n"
+                + "complaintID: "+ complaintID.getComplaintId()+"\n"
+                + "date:"+ date.toString();
+    }
 * */
