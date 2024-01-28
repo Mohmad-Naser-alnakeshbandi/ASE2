@@ -1,33 +1,32 @@
 package complaint.valueobject;
-
-import errors.Errors;
-
+import java.io.IOException;
 import java.util.Objects;
 
 public class ComplaintDescription {
 
-    private String title;
-    private String body;
+    private final String title;
+    private final String body;
     public String getTitle() {
         return title;
     }
-    public String getDescription() {
+    public String getBody() {
         return body;
     }
-    public ComplaintDescription(String title, String body) {
+
+    public ComplaintDescription(String title, String body) throws IOException {
         validateTitle(title);
         validateDescription(body);
         this.title = title;
         this.body = body;
     }
-    private void validateTitle(String title) {
+    private void validateTitle(String title) throws IOException {
         if (title.length() < 10) {
-            throw new Errors("Title should have at least 10 characters");
+            throw  new IOException("Title should have at least 10 characters");
         }
     }
-    private void validateDescription(String description) {
+    private void validateDescription(String description) throws IOException {
         if (description.length() < 10) {
-            throw new Errors("Description should have at least 10 characters");
+            throw new IOException("Description should have at least 10 characters");
         }
     }
     @Override

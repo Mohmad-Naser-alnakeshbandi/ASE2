@@ -2,10 +2,8 @@ package complaint.valueobject;
 
 import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class ComplaintID {
-    private  String complaintId;
     public String getComplaintId()
     {
         int upperBound = 1000;
@@ -16,6 +14,11 @@ public class ComplaintID {
         return String.format("C%03d", randomThreeDigitNumber);
     }
     public ComplaintID() {}
+
+    @Override
+    public String toString() {
+        return getComplaintId();
+    }
 
     @Override
     public boolean equals(Object o) {

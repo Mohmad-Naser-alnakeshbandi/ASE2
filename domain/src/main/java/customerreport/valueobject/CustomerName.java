@@ -9,14 +9,14 @@ public class CustomerName {
     public String getCustomerName() {
         return customerName;
     }
-    public CustomerName(String customerName) {
+    public CustomerName(String customerName)  {
         validateCustomerName(customerName);
         this.customerName = customerName;
     }
-    private void validateCustomerName(String customerName) {
+    private void validateCustomerName(String customerName)  {
 
         if (customerName.isBlank()) {
-            throw new Errors("Customer Name can not be blank!");
+            throw  new Errors("Customer Name can not be blank!");
         }
     }
 

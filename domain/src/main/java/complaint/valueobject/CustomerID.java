@@ -1,13 +1,11 @@
 package complaint.valueobject;
-
-import errors.Errors;
-
+import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerID {
-    private String customerID;
+    private final String customerID;
 
-    public CustomerID(String customerID) {
+    public CustomerID(String customerID) throws IOException {
         validateCustomerID(customerID);
         this.customerID = customerID;
     }
@@ -16,11 +14,16 @@ public class CustomerID {
         return customerID;
     }
 
-    private void validateCustomerID(String customerID) {
+    private void validateCustomerID(String customerID) throws IOException {
         // Ensure the printer ID follows the format "P" followed by 3 numbers
         if (!customerID.matches("C\\d{3}")) {
-            throw new Errors("Invalid printer ID format");
+            throw new IOException("Invalid printer ID format");
         }
+    }
+
+    @Override
+    public String toString() {
+        return getCustomerID();
     }
 
     @Override

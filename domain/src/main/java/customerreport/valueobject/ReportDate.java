@@ -22,7 +22,7 @@ public class ReportDate {
 
     private void validateDate(String startDate, String endDate) {
         if (startDate != null && endDate != null && startDate.compareTo(endDate) > 0) {
-            throw new Errors("Start date must be less than or equal to end date.");
+            throw  new Errors("Start date must be less than or equal to end date.");
         }
     }
 }

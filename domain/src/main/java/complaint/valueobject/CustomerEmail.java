@@ -1,27 +1,30 @@
 package complaint.valueobject;
-
-import errors.Errors;
-
+import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerEmail {
 
     private final String email;
 
-    public CustomerEmail(String email) {
-        validateEmail(email);
-        this.email = email;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    private void validateEmail(String email) {
+    public CustomerEmail(String email) throws IOException {
+        validateEmail(email);
+        this.email = email;
+    }
+
+    private void validateEmail(String email) throws IOException {
         // Basic email format validation: test@gmail.com
-        if (email == null || !email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            throw new Errors("Invalid email format");
+        if (email == null || !email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            throw new IOException("Invalid email format");
         }
+    }
+
+    @Override
+    public String toString() {
+        return getEmail();
     }
 
     @Override

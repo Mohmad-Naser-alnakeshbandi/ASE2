@@ -1,15 +1,26 @@
 package gui.complaint;
 
 import colors.UsedColors;
+import complaint.entity.Complaint;
+import complaint.valueobject.*;
+import persistence.complaint.ComplaintRepositoryBridge;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.Date;
 
 
-public class GUIComplaint {
+public class GUIComplaint extends Component {
 
-    void init() {
+    private final ComplaintRepositoryBridge complaintRepositoryBridge;
+
+    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge) {
+        this.complaintRepositoryBridge = complaintRepositoryBridge;
+    }
+
+    public void init() {
         // Initialize the main JFrame
         JFrame window = new JFrame("Complaint Management System");
         window.setSize(1000, 800);
@@ -31,7 +42,7 @@ public class GUIComplaint {
         titlePanel.setLayout(new BorderLayout());
         generalInformationPanel.setLayout(new GridLayout(1, 2));
         generalInformationPanelLeft.setLayout(new GridLayout(5, 2, 20, 0));
-        generalInformationPanelRight.setLayout(new GridLayout(4, 2, 20, 0));
+        generalInformationPanelRight.setLayout(new GridLayout(6, 2, 20, 0));
         complaintInformationPanel.setLayout(new GridLayout(2, 2, 20, 0));
         submitPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -66,7 +77,11 @@ public class GUIComplaint {
         JLabel emailLabel = new JLabel("Email");
         JTextField emailInputTextField = new JTextField();
         JLabel countryLabel = new JLabel("Country");
-        JTextField countryLabelTextField = new JTextField();
+        JTextField countryTextField = new JTextField();
+        JLabel stateLabel = new JLabel("State");
+        JTextField stateTextField = new JTextField();
+        JLabel cityLabel = new JLabel("City");
+        JTextField cityTextField = new JTextField();
         JLabel streetLabel = new JLabel("Street");
         JTextField streetTextField = new JTextField();
         JLabel locationNumberLabel = new JLabel("Location Number");
@@ -90,8 +105,10 @@ public class GUIComplaint {
         controlPanel.add(customerReportButton);
         controlPanel.add(printerReportButton);
         controlPanel.add(weeklyReportButton);
+
         generalInformationPanel.add(generalInformationPanelLeft);
         generalInformationPanel.add(generalInformationPanelRight);
+
         generalInformationPanelLeft.add(firstNameLabel);
         generalInformationPanelLeft.add(firstNameTextField);
         generalInformationPanelLeft.add(lastNameLabel);
@@ -102,14 +119,20 @@ public class GUIComplaint {
         generalInformationPanelLeft.add(customerIDInputTextField);
         generalInformationPanelLeft.add(emailLabel);
         generalInformationPanelLeft.add(emailInputTextField);
+
         generalInformationPanelRight.add(countryLabel);
-        generalInformationPanelRight.add(countryLabelTextField);
+        generalInformationPanelRight.add(countryTextField);
+        generalInformationPanelRight.add(stateLabel);
+        generalInformationPanelRight.add(stateTextField);
+        generalInformationPanelRight.add(cityLabel);
+        generalInformationPanelRight.add(cityTextField);
         generalInformationPanelRight.add(streetLabel);
         generalInformationPanelRight.add(streetTextField);
         generalInformationPanelRight.add(locationNumberLabel);
         generalInformationPanelRight.add(locationNumberTextField);
         generalInformationPanelRight.add(callNumberLabel);
         generalInformationPanelRight.add(callNumberTextField);
+
         complaintInformationPanel.add(titlelLabel);
         complaintInformationPanel.add(titleScrollPane);
         complaintInformationPanel.add(descriptionLabel);
@@ -135,10 +158,38 @@ public class GUIComplaint {
         });
 
         addComplaintButton.addActionListener(e -> {
-            if (checkAndSetBorder(firstNameTextField) || checkAndSetBorder(lastNameTextField) || checkAndSetBorder(printerIDTextField) || checkAndSetBorder(customerIDInputTextField) || checkAndSetBorder(emailInputTextField) || checkAndSetBorder(countryLabelTextField) || checkAndSetBorder(streetTextField) || checkAndSetBorder(locationNumberTextField) || checkAndSetBorder(callNumberTextField) || checkAndSetBorder(titleTextArea) || checkAndSetBorder(descriptionTextArea)) {
-                return;  // Exit the method if any field is blank
+            try {
+                Complaint complaint = new Complaint.Builder()
+                        .name(new CustomerName(firstNameTextField.getText(), lastNameTextField.getText()))
+                        .description(new ComplaintDescription(titleTextArea.getText(), descriptionTextArea.getText()))
+                        .callNumber(new CustomerCallNumber(callNumberTextField.getText()))
+                        .email(new CustomerEmail(emailInputTextField.getText()))
+                        .customerID(new CustomerID(customerIDInputTextField.getText()))
+                        .location(new CustomerLocation(countryTextField.getText(), stateTextField.getText(), cityTextField.getText(), streetTextField.getText(), locationNumberTextField.getText()))
+                        .printerID(new PrinterID(printerIDTextField.getText())).complaintID(new ComplaintID())
+                        .date(Date.from(Instant.now())).build();
+                complaintRepositoryBridge.addComplaint(complaint);
+
+                // After adding the complaint the input text field have to be empty
+                firstNameTextField.setText("");
+                lastNameTextField.setText("");
+                titleTextArea.setText("");
+                descriptionTextArea.setText("");
+                callNumberTextField.setText("");
+                emailInputTextField.setText("");
+                customerIDInputTextField.setText("");
+                countryTextField.setText("");
+                stateTextField.setText("");
+                cityTextField.setText("");
+                streetTextField.setText("");
+                locationNumberTextField.setText("");
+                printerIDTextField.setText("");
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "your input in incorrect", JOptionPane.ERROR_MESSAGE);
+            } catch (IllegalStateException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong", JOptionPane.ERROR_MESSAGE);
             }
-            // Continue with the rest of your code if all fields are non-blank - success case!
         });
 
 
@@ -171,15 +222,5 @@ public class GUIComplaint {
         panel.setBounds(0, y, 1000, height);
         panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return panel;
-    }
-
-    private boolean checkAndSetBorder(JTextComponent textComponent) {
-        boolean isBlank = textComponent.getText().isBlank();
-        textComponent.setBorder(isBlank ? BorderFactory.createLineBorder(UsedColors.ERROR_COLOR) : null);
-        return isBlank;
-    }
-
-    public static void main(String[] args) {
-        new GUIComplaint().init();
     }
 }

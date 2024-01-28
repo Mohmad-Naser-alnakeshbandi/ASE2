@@ -1,14 +1,14 @@
 package complaint.valueobject;
 
-import errors.Errors;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerCallNumber
 {
     private final String callNumber;
 
-    public CustomerCallNumber(String callNumber) {
+    public CustomerCallNumber(String callNumber)  throws IOException {
         validateCallNumber(callNumber);
         this.callNumber = callNumber;
     }
@@ -17,11 +17,16 @@ public class CustomerCallNumber
         return callNumber;
     }
 
-    private void validateCallNumber(String callNumber) {
+    private void validateCallNumber(String callNumber) throws IOException {
         //+(123) - 456-78-90
-        if (callNumber == null || !callNumber.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")) {
-            throw new Errors("Invalid customer call number for DACH area");
+        if (callNumber == null || !callNumber.matches("^[+]*[(]?[0-9]{1,4}[)]?[-\\s./0-9]*$")) {
+            throw new IOException("Invalid customer call number for DACH area");
         }
+    }
+
+    @Override
+    public String toString() {
+        return getCallNumber();
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.util.Date; // Import Date class
 
 public class Complaint {
 
+    private final CustomerName customerName;
     private final ComplaintDescription description;
     private final CustomerCallNumber callNumber;
     private final CustomerEmail email;
@@ -16,6 +17,7 @@ public class Complaint {
     private final Date date; // Add date field
 
     private Complaint(Builder builder) {
+        this.customerName = builder.customerName;
         this.description = builder.description;
         this.callNumber = builder.callNumber;
         this.email = builder.email;
@@ -25,9 +27,40 @@ public class Complaint {
         this.complaintID = builder.complaintID;
         this.date = builder.date; // Set date
     }
+    public CustomerName getName() {
+        return customerName;
+    }
+    public ComplaintDescription getDescription() {
+        return description;
+    }
+
+    public CustomerCallNumber getCallNumber() {
+        return callNumber;
+    }
+
+    public CustomerEmail getEmail() {
+        return email;
+    }
+
+    public CustomerID getCustomerID() {
+        return customerID;
+    }
+
+    public CustomerLocation getLocation() {
+        return location;
+    }
+
+    public PrinterID getPrinterID() {
+        return printerID;
+    }
+
+    public ComplaintID getComplaintID() {
+        return complaintID;
+    }
 
     public static class Builder {
 
+        private CustomerName customerName;
         private ComplaintDescription description;
         private CustomerCallNumber callNumber;
         private CustomerEmail email;
@@ -40,7 +73,10 @@ public class Complaint {
         public Builder() {
             // Default constructor
         }
-
+        public Builder name(CustomerName customerName) {
+            this.customerName = customerName;
+            return this;
+        }
         public Builder description(ComplaintDescription description) {
             this.description = description;
             return this;
@@ -85,29 +121,17 @@ public class Complaint {
             return new Complaint(this);
         }
     }
+
     @Override
     public String toString() {
-        return    "description: " + description.getTitle() +": " + description.getDescription() + "\n"
+        return  "The First name: " + customerName.getFirstName() + ", Last name: " + customerName.getLastName()
+                + "description: " + description.getTitle() +": " + description.getBody() + "\n"
                 + "callNumber: "+ callNumber.getCallNumber() + "\n"
                 + "email: "+ email.getEmail() + "\n"
                 + "customerID: "+ customerID.getCustomerID() + "\n"
-                + "location: "+location.getCountry() +"-"+location.getCity()+"-"+location.getStreet()+"-"+location.getNumber() + "\n"
+                + "location: "+location.getCountry() +"-"+location.getState()+"-"+location.getCity()+"-"+location.getStreet()+"-"+location.getNumber() + "\n"
                 + "printerID: "+ printerID.getPrinterID()+ "\n"
                 + "complaintID: "+ complaintID.getComplaintId()+"\n"
                 + "date:"+ date.toString();
     }
 }
-
-/*
-*  @Override
-    public String toString() {
-        return    "description: " + description.getTitle() +" " + description.getTitle() + "\n"
-                + "callNumber: "+ callNumber.getCallNumber() + "\n"
-                + "email: "+ email.getEmail() + "\n"
-                + "customerID: "+ customerID. + "\n"
-                + "location: "+location.getCountry() +"-"+location.getCity()+"-"+location.getStreet()+"-"+location.getNumber() + "\n"
-                + "printerID: "+ printerID.getPrinterID()+ "\n"
-                + "complaintID: "+ complaintID.getComplaintId()+"\n"
-                + "date:"+ date.toString();
-    }
-* */
