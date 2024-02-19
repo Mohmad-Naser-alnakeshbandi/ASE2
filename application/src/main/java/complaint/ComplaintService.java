@@ -46,6 +46,7 @@ public class ComplaintService {
             jsonObject.put("PrinterID", complaint.getPrinterID().toString());
             jsonObject.put("Email", complaint.getEmail().toString());
             jsonObject.put("Call Number", complaint.getCallNumber());
+            jsonObject.put("Date",complaint.getComplaintDate());
 
             JSONObject location = new JSONObject();
             location.put("Country", complaint.getLocation().getCountry());
@@ -59,7 +60,7 @@ public class ComplaintService {
             complaintInfo.put("title", complaint.getDescription().getTitle());
             complaintInfo.put("description", complaint.getDescription().getBody());
             jsonObject.put("Complaint", complaintInfo);
-
+            System.out.println(complaint.getComplaintDate());
             return jsonObject;
         }
         return null;

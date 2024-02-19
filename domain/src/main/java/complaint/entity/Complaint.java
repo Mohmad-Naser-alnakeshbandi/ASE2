@@ -2,8 +2,6 @@ package complaint.entity;
 
 import complaint.valueobject.*;
 
-import java.util.Date; // Import Date class
-
 public class Complaint {
 
     private final CustomerName customerName;
@@ -14,7 +12,7 @@ public class Complaint {
     private final CustomerLocation location;
     private final PrinterID printerID;
     private final ComplaintID complaintID;
-    private final Date date; // Add date field
+    private final ComplaintDate complaintDate;
 
     private Complaint(Builder builder) {
         this.customerName = builder.customerName;
@@ -25,7 +23,7 @@ public class Complaint {
         this.location = builder.location;
         this.printerID = builder.printerID;
         this.complaintID = builder.complaintID;
-        this.date = builder.date; // Set date
+        this.complaintDate = builder.complaintDate; // Set date
     }
     public CustomerName getName() {
         return customerName;
@@ -58,6 +56,10 @@ public class Complaint {
         return complaintID;
     }
 
+    public ComplaintDate getComplaintDate() {
+        return complaintDate;
+    }
+
     public static class Builder {
 
         private CustomerName customerName;
@@ -68,7 +70,8 @@ public class Complaint {
         private CustomerLocation location;
         private PrinterID printerID;
         private ComplaintID complaintID;
-        private Date date; // Add date field
+
+        private ComplaintDate complaintDate;
 
         public Builder() {
             // Default constructor
@@ -112,10 +115,11 @@ public class Complaint {
             return this;
         }
 
-        public Builder date(Date date) {
-            this.date = date;
+        public Builder complaintDate() {
+            this.complaintDate = complaintDate;
             return this;
         }
+
 
         public Complaint build() {
             return new Complaint(this);
@@ -132,6 +136,6 @@ public class Complaint {
                 + "location: "+location.getCountry() +"-"+location.getState()+"-"+location.getCity()+"-"+location.getStreet()+"-"+location.getNumber() + "\n"
                 + "printerID: "+ printerID.getPrinterID()+ "\n"
                 + "complaintID: "+ complaintID.getComplaintId()+"\n"
-                + "date:"+ date.toString();
+                + "date:"+ complaintDate.getCurrentDate();
     }
 }

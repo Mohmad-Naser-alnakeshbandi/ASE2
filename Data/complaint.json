@@ -1,72 +1,12 @@
 [
   {
-    "Email": "mohamad.naser@gmail.com",
-    "First Name": "Mohamad",
-    "ComplaintID": "C882",
-    "Call Number": "+(123)-456-78-90",
-    "Complaint": {
-      "description": "we do not know, it could be the cabel or any other problem",
-      "title": "The printer does not start"
-    },
-    "CustomerID": "C000",
-    "PrinterID": "P001",
-    "Last Name": "Naser",
-    "Location": {
-      "State": "BW",
-      "Location Number": "A12",
-      "Country": "Germany",
-      "Street": "Hauptstraße",
-      "City": "Karlsruhe"
-    }
-  },
-  {
-    "Email": "mohamd@gmail.com",
-    "First Name": "Mohamad",
-    "ComplaintID": "C871",
-    "Call Number": "+(123)-654-12-34",
-    "Complaint": {
-      "description": "we do not know why",
-      "title": "The printer does not start at all"
-    },
-    "CustomerID": "C007",
-    "PrinterID": "P036",
-    "Last Name": "Naser ",
-    "Location": {
-      "State": "BW",
-      "Location Number": "A12",
-      "Country": "Germany",
-      "Street": "Hauptstr",
-      "City": "Karlsruhe"
-    }
-  },
-  {
-    "Email": "Yunes@Halland.com",
-    "First Name": "Yunes",
-    "ComplaintID": "C309",
-    "Call Number": "+(124)-456-789",
-    "Complaint": {
-      "description": "we do not know the reason",
-      "title": "The printer does not start"
-    },
-    "CustomerID": "C000",
-    "PrinterID": "P004",
-    "Last Name": "Halland",
-    "Location": {
-      "State": "bw",
-      "Location Number": "R12",
-      "Country": "Germany",
-      "Street": "Hauptstaße",
-      "City": "Pforhzeim"
-    }
-  },
-  {
-    "Email": "mohamad_Naser@gmail.com",
+    "Email": "mohamad.Naser@gmail.com",
     "First Name": "Mohamad Naser",
     "ComplaintID": "C192",
     "Call Number": "+(123)-456-789",
     "Complaint": {
       "description": "It could be the software update",
-      "title": "The printer does not srart "
+      "title": "The printer does not start "
     },
     "CustomerID": "C000",
     "PrinterID": "P001",
@@ -77,6 +17,146 @@
       "Country": "Germany",
       "Street": "Hauptstr",
       "City": "Crailsheim"
+    }
+  },
+  {
+    "Email": "mohamad.Naser@gmail.com",
+    "First Name": "Mohamad Naser",
+    "ComplaintID": "C181",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "It could be the cable",
+      "title": "The printer does not start "
+    },
+    "CustomerID": "C000",
+    "PrinterID": "P002",
+    "Last Name": "Alnakshbandi",
+    "Location": {
+      "State": "BW",
+      "Location Number": "E13",
+      "Country": "Germany",
+      "Street": "Hauptstr",
+      "City": "Crailsheim"
+    }
+  },
+  {
+    "Email": "mohamad.Naser@gmail.com",
+    "First Name": "Mohamad Naser",
+    "ComplaintID": "C171",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "The print quality is not satisfactory",
+      "title": "Print Quality Issue"
+    },
+    "CustomerID": "C000",
+    "PrinterID": "P003",
+    "Last Name": "Alnakshbandi",
+    "Location": {
+      "State": "BW",
+      "Location Number": "E13",
+      "Country": "Germany",
+      "Street": "Hauptstr",
+      "City": "Crailsheim"
+    }
+  },
+  {
+    "Email": "mohamad.Naser@gmail.com",
+    "First Name": "Mohamad Naser",
+    "ComplaintID": "C160",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "The printer makes strange noises",
+      "title": "Printing Issues"
+    },
+    "CustomerID": "C000",
+    "PrinterID": "P004",
+    "Last Name": "Alnakshbandi",
+    "Location": {
+      "State": "BW",
+      "Location Number": "E13",
+      "Country": "Germany",
+      "Street": "Hauptstr",
+      "City": "Crailsheim"
+    }
+  },
+  {
+    "Email": "mohamad.Naser@gmail.com",
+    "First Name": "Mohamad Naser",
+    "ComplaintID": "C182",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "The printer produces blurry prints",
+      "title": "Print Quality Issue"
+    },
+    "CustomerID": "C000",
+    "PrinterID": "P005",
+    "Last Name": "Alnakshbandi",
+    "Location": {
+      "State": "BW",
+      "Location Number": "E13",
+      "Country": "Germany",
+      "Street": "Hauptstr",
+      "City": "Crailsheim"
+    }
+  },
+  {
+    "Email": "mohamad.Naser@gmail.com",
+    "First Name": "Mohamd Naser",
+    "ComplaintID": "C305",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "we do not know the reason",
+      "title": "The printer does start at all"
+    },
+    "CustomerID": "C000",
+    "PrinterID": "P005",
+    "Last Name": "Alnakshabndi",
+    "Location": {
+      "State": "BW",
+      "Location Number": "E13",
+      "Country": "Germany",
+      "Street": "Hauptstr",
+      "City": "Crailsheim"
+    }
+  },
+  {
+    "Email": "mohamad@gamil.com",
+    "First Name": "Mohamad",
+    "ComplaintID": "C650",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "It could be the cables",
+      "title": "the printer does not start"
+    },
+    "CustomerID": "C000",
+    "PrinterID": "P001",
+    "Last Name": "Naser",
+    "Location": {
+      "State": "BW",
+      "Location Number": "E12",
+      "Country": "GErmany",
+      "Street": "Haupstra",
+      "City": "Kalrsruhe"
+    }
+  },
+  {
+    "Email": "adxwadad@gmail.com",
+    "First Name": "adwadwa",
+    "ComplaintID": "C893",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "dawdwadwad",
+      "title": "wadawdawdwa"
+    },
+    "CustomerID": "C000",
+    "PrinterID": "P001",
+    "Last Name": "adwwadawd",
+    "Location": {
+      "State": "wadwa",
+      "Location Number": "awdwad",
+      "Country": "dawdawd",
+      "Street": "awdawd",
+      "City": "dwadwad"
     }
   }
 ]

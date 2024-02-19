@@ -4,7 +4,6 @@ import colors.UsedColors;
 import complaint.entity.Complaint;
 import complaint.valueobject.*;
 import persistence.complaint.ComplaintRepositoryBridge;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -142,7 +141,7 @@ public class GUIComplaint extends Component {
 
         // add ActionListener to the Buttons
         complaintButton.addActionListener(e -> {
-
+            showComplaintGUI();
         });
         complaintButton.addActionListener(e -> {
 
@@ -167,7 +166,7 @@ public class GUIComplaint extends Component {
                         .customerID(new CustomerID(customerIDInputTextField.getText()))
                         .location(new CustomerLocation(countryTextField.getText(), stateTextField.getText(), cityTextField.getText(), streetTextField.getText(), locationNumberTextField.getText()))
                         .printerID(new PrinterID(printerIDTextField.getText())).complaintID(new ComplaintID())
-                        .date(Date.from(Instant.now())).build();
+                        .build();
                 complaintRepositoryBridge.addComplaint(complaint);
 
                 // After adding the complaint the input text field have to be empty
@@ -223,4 +222,9 @@ public class GUIComplaint extends Component {
         panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return panel;
     }
+
+    private void showComplaintGUI(){
+        init();
+    }
+
 }
