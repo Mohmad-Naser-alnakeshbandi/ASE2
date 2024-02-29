@@ -1,28 +1,33 @@
 package customerreport.valueobject;
-
 import errors.Errors;
 
-public class ReportDate {
-    private String startDate;
-    private String endDate;
+import java.io.IOException;
+import java.util.Date;
 
-    public String getEndDate() {
+public class ReportDate {
+    private final Date startDate;
+    private final Date endDate;
+
+    public Date getEndDate() {
         return endDate;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public ReportDate(String startDate, String endDate) {
-        validateDate( startDate,  endDate);
+    public ReportDate(Date startDate, Date endDate)throws IOException {
+        validateDate(startDate, endDate);
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    private void validateDate(String startDate, String endDate) {
-        if (startDate != null && endDate != null && startDate.compareTo(endDate) > 0) {
-            throw  new Errors("Start date must be less than or equal to end date.");
+    private void validateDate(Date startDate, Date endDate)throws IOException {
+        if (startDate == null || endDate == null) {
+            throw new  IOException("Both start date and end date must be provided.");
+        }
+        if (startDate.after(endDate)) {
+            throw new  IOException("Start date must be before end date.");
         }
     }
 }

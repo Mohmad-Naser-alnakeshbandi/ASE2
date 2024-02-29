@@ -39,14 +39,21 @@ public class ComplaintService {
         if (isContractValid) {
             JSONObject jsonObject = new JSONObject();
 
+            if (complaint.getComplaintDate() != null) {
+                jsonObject.put("Date", complaint.getComplaintDate().getCurrentDate());
+            } else {
+                // Handle the case where complaint date is null
+                jsonObject.put("Date", "Unknown");
+            }
+
             jsonObject.put("ComplaintID", complaint.getComplaintID());
+            jsonObject.put("Date",complaint.getComplaintDate());
             jsonObject.put("First Name", complaint.getName().getFirstName());
             jsonObject.put("Last Name", complaint.getName().getLastName());
             jsonObject.put("CustomerID", complaint.getCustomerID().toString());
             jsonObject.put("PrinterID", complaint.getPrinterID().toString());
             jsonObject.put("Email", complaint.getEmail().toString());
             jsonObject.put("Call Number", complaint.getCallNumber());
-            jsonObject.put("Date",complaint.getComplaintDate());
 
             JSONObject location = new JSONObject();
             location.put("Country", complaint.getLocation().getCountry());
@@ -60,9 +67,9 @@ public class ComplaintService {
             complaintInfo.put("title", complaint.getDescription().getTitle());
             complaintInfo.put("description", complaint.getDescription().getBody());
             jsonObject.put("Complaint", complaintInfo);
-            System.out.println(complaint.getComplaintDate());
             return jsonObject;
         }
+
         return null;
     }
 
@@ -84,7 +91,7 @@ public class ComplaintService {
                 // Check if the printerID exists in the array
                 if (printerIDs.toList().contains(printerID)) {
                     new Success("Add Complaint", "Contract is valid for Customer ID: " + customerID + " and Printer ID:" + printerID + "\n" + " we will deal with the complaint as fast as possible");
-                    System.out.println("Contract is valid for Customer ID: " + customerID + " and Printer ID: " + printerID);
+                   // System.out.println("Contract is valid for Customer ID: " + customerID + " and Printer ID: " + printerID);
                     return true;
                 } else {
                     throw new IllegalStateException("Printer ID: " + printerID + " not found in the contract for Customer ID: " + customerID);

@@ -1,5 +1,6 @@
 import gui.complaint.GUIComplaint;
 import persistence.complaint.ComplaintRepositoryBridge;
+import persistence.customerReport.CustomerReportRepositoryBridge;
 
 import javax.swing.*;
 
@@ -9,7 +10,8 @@ public class Application {
             @Override
             public void run() {
                 ComplaintRepositoryBridge complaintRepositoryBridge = new ComplaintRepositoryBridge();
-                new GUIComplaint(complaintRepositoryBridge).init();
+                CustomerReportRepositoryBridge customerReportRepositoryBridge = new CustomerReportRepositoryBridge();
+                new GUIComplaint(complaintRepositoryBridge, customerReportRepositoryBridge).init();
             }
         });
 

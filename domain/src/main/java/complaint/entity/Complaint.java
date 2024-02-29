@@ -115,10 +115,11 @@ public class Complaint {
             return this;
         }
 
-        public Builder complaintDate() {
+        public Builder complaintDate(ComplaintDate complaintDate) {
             this.complaintDate = complaintDate;
             return this;
         }
+
 
 
         public Complaint build() {

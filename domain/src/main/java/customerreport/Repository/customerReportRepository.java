@@ -1,9 +1,11 @@
 package customerreport.Repository;
 
-import customerreport.valueobject.CustomerName;
+import customerreport.entity.CustomerReport;
+import customerreport.valueobject.CustomerID;
+import customerreport.valueobject.ReportDate;
 
 import java.io.IOException;
 
 public interface customerReportRepository {
-    void createCustomerReport(CustomerName customerName) throws IOException;
+    void createCustomerReport(CustomerReport customerReport) throws IOException;
 }

@@ -1,0 +1,84 @@
+package gui.customerreport;
+
+import javax.swing.*;
+import com.toedter.calendar.JDateChooser;
+import customerreport.entity.CustomerReport;
+import customerreport.valueobject.CustomerID;
+import customerreport.valueobject.ReportDate;
+import persistence.customerReport.CustomerReportRepositoryBridge;
+
+import java.awt.*;
+import java.io.IOException;
+
+public class GUICustomerReport extends JFrame {
+
+    final CustomerReportRepositoryBridge customerReportRepositoryBridge;
+    private JTextField customerIdField;
+    private JDateChooser startDateChooser;
+    private JDateChooser endDateChooser;
+    private JButton generateBtn;
+    private JButton savedBtn;
+
+    public GUICustomerReport(CustomerReportRepositoryBridge customerReportRepositoryBridge) {
+        this.customerReportRepositoryBridge = customerReportRepositoryBridge;
+    }
+
+    public void init() {
+        setTitle("Custom Report");
+        setSize(600, 165); // Set the size to 400x400
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Creating components
+        JLabel customerIdLabel = new JLabel("Customer ID:");
+        customerIdField = new JTextField(20);
+        JLabel startDateLabel = new JLabel("Start Date:");
+        startDateChooser = new JDateChooser();
+        JLabel endDateLabel = new JLabel("End Date:");
+        endDateChooser = new JDateChooser();
+        generateBtn = new JButton("Generate Report");
+        generateBtn.setPreferredSize(new Dimension(150, 30)); // Set preferred size for the button
+        savedBtn = new JButton("Saved");
+        savedBtn.setPreferredSize(new Dimension(150, 30)); // Set preferred size for the button
+
+        // Panels
+        JPanel inputPanel = new JPanel(new GridLayout(3, 2, 5, 5));
+        inputPanel.add(customerIdLabel);
+        inputPanel.add(customerIdField);
+        inputPanel.add(startDateLabel);
+        inputPanel.add(startDateChooser);
+        inputPanel.add(endDateLabel);
+        inputPanel.add(endDateChooser);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(generateBtn);
+        buttonPanel.add(savedBtn); // Add the saved button
+
+        // Layout
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add some space at the top
+        panel.add(inputPanel, BorderLayout.NORTH);
+        panel.add(buttonPanel, BorderLayout.CENTER); // Move the button panel to the CENTER
+
+        // Adding components to the frame
+        add(panel);
+
+        setVisible(true);
+
+        generateBtn.addActionListener(e -> {
+            try{
+                CustomerReport customerReport= new CustomerReport.Builder()
+                        .customerID( new CustomerID(customerIdField.getText()))
+                        .reportDate( new ReportDate(startDateChooser.getDate(),endDateChooser.getDate())).
+                        build();
+                customerReportRepositoryBridge.createCustomerReport(customerReport);
+            }
+            catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "your input in incorrect", JOptionPane.ERROR_MESSAGE);
+            } catch (IllegalStateException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+    }
+}

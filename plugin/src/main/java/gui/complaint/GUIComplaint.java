@@ -1,22 +1,24 @@
 package gui.complaint;
-
 import colors.UsedColors;
 import complaint.entity.Complaint;
 import complaint.valueobject.*;
+import gui.customerreport.GUICustomerReport;
 import persistence.complaint.ComplaintRepositoryBridge;
+import persistence.customerReport.CustomerReportRepositoryBridge;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.time.Instant;
-import java.util.Date;
+
 
 
 public class GUIComplaint extends Component {
 
     private final ComplaintRepositoryBridge complaintRepositoryBridge;
-
-    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge) {
+    private final CustomerReportRepositoryBridge customerReportRepositoryBridge;
+    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge, CustomerReportRepositoryBridge customerReportRepositoryBridge) {
         this.complaintRepositoryBridge = complaintRepositoryBridge;
+        this.customerReportRepositoryBridge = customerReportRepositoryBridge;
     }
 
     public void init() {
@@ -54,10 +56,9 @@ public class GUIComplaint extends Component {
         titleLabel.setForeground(UsedColors.Font_COLOR_Submit);
 
         // Create buttons
-        JButton complaintButton = createButton(50, "Complaint");
-        JButton customerReportButton = createButton(280, "Customer Report");
-        JButton printerReportButton = createButton(510, "Printer Report");
-        JButton weeklyReportButton = createButton(740, "Weekly Report");
+        JButton customerReportButton = createButton(50, "Customer Report");
+        JButton printerReportButton = createButton(375, "Printer Report");
+        JButton weeklyReportButton = createButton(700, "Weekly Report");
         JButton addComplaintButton = new JButton("Add complaint");
         addComplaintButton.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         addComplaintButton.setPreferredSize(new Dimension(600, 50));
@@ -100,7 +101,6 @@ public class GUIComplaint extends Component {
 
         // Add components to panels
         titlePanel.add(titleLabel, BorderLayout.CENTER);
-        controlPanel.add(complaintButton);
         controlPanel.add(customerReportButton);
         controlPanel.add(printerReportButton);
         controlPanel.add(weeklyReportButton);
@@ -139,15 +139,11 @@ public class GUIComplaint extends Component {
         submitPanel.add(addComplaintButton);
 
 
-        // add ActionListener to the Buttons
-        complaintButton.addActionListener(e -> {
-            showComplaintGUI();
-        });
-        complaintButton.addActionListener(e -> {
-
-        });
         customerReportButton.addActionListener(e -> {
+            CustomerReportRepositoryBridge customerReportRepositoryBridge = new CustomerReportRepositoryBridge(); // Instantiate your CustomerReportRepositoryBridge
 
+            GUICustomerReport customReport = new GUICustomerReport(customerReportRepositoryBridge);
+            customReport.init();
         });
         printerReportButton.addActionListener(e -> {
 
@@ -158,6 +154,7 @@ public class GUIComplaint extends Component {
 
         addComplaintButton.addActionListener(e -> {
             try {
+
                 Complaint complaint = new Complaint.Builder()
                         .name(new CustomerName(firstNameTextField.getText(), lastNameTextField.getText()))
                         .description(new ComplaintDescription(titleTextArea.getText(), descriptionTextArea.getText()))
@@ -165,7 +162,9 @@ public class GUIComplaint extends Component {
                         .email(new CustomerEmail(emailInputTextField.getText()))
                         .customerID(new CustomerID(customerIDInputTextField.getText()))
                         .location(new CustomerLocation(countryTextField.getText(), stateTextField.getText(), cityTextField.getText(), streetTextField.getText(), locationNumberTextField.getText()))
-                        .printerID(new PrinterID(printerIDTextField.getText())).complaintID(new ComplaintID())
+                        .printerID(new PrinterID(printerIDTextField.getText()))
+                        .complaintID(new ComplaintID())
+                        .complaintDate(new ComplaintDate())
                         .build();
                 complaintRepositoryBridge.addComplaint(complaint);
 
@@ -211,7 +210,7 @@ public class GUIComplaint extends Component {
         button.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         button.setBackground(UsedColors.COLOR_Button_Background);
         button.setForeground(UsedColors.COLOR_Button_Text);
-        button.setBounds(x, 5, 210, 50);
+        button.setBounds(x, 5, 250, 50);
         button.setOpaque(true);
         return button;
     }
@@ -223,8 +222,6 @@ public class GUIComplaint extends Component {
         return panel;
     }
 
-    private void showComplaintGUI(){
-        init();
-    }
+
 
 }

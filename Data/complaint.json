@@ -1,162 +1,107 @@
 [
   {
-    "Email": "mohamad.Naser@gmail.com",
-    "First Name": "Mohamad Naser",
-    "ComplaintID": "C192",
+    "Email": "mohamad@gmail.com",
+    "First Name": "Lukas",
+    "ComplaintID": "C520",
     "Call Number": "+(123)-456-789",
     "Complaint": {
-      "description": "It could be the software update",
-      "title": "The printer does not start "
+      "description": "It could be the cable or the software update we do not know really what is going wrong",
+      "title": "The printer does not start"
     },
     "CustomerID": "C000",
     "PrinterID": "P001",
-    "Last Name": "Alnakshbandi",
+    "Last Name": "Genz",
+    "Date": "Wed Feb 28 21:34:14 CET 2024",
     "Location": {
       "State": "BW",
-      "Location Number": "E13",
+      "Location Number": "A12",
       "Country": "Germany",
-      "Street": "Hauptstr",
+      "Street": "Hauptstraße",
       "City": "Crailsheim"
     }
   },
   {
-    "Email": "mohamad.Naser@gmail.com",
-    "First Name": "Mohamad Naser",
-    "ComplaintID": "C181",
-    "Call Number": "+(123)-456-789",
+    "Email": "jane.doe@example.com",
+    "First Name": "Jane",
+    "ComplaintID": "C521",
+    "Call Number": "+(456)-789-012",
     "Complaint": {
-      "description": "It could be the cable",
-      "title": "The printer does not start "
+      "description": "The printer is making a loud noise and not printing correctly",
+      "title": "Printer noise and printing issue"
     },
-    "CustomerID": "C000",
-    "PrinterID": "P002",
-    "Last Name": "Alnakshbandi",
+    "CustomerID": "C001",
+    "PrinterID": "P006",
+    "Last Name": "Doe",
+    "Date": "Thu Mar 01 10:22:33 CET 2024",
     "Location": {
-      "State": "BW",
-      "Location Number": "E13",
+      "State": "BY",
+      "Location Number": "B15",
       "Country": "Germany",
-      "Street": "Hauptstr",
-      "City": "Crailsheim"
+      "Street": "Münchner Straße",
+      "City": "Nuremberg"
     }
   },
   {
-    "Email": "mohamad.Naser@gmail.com",
-    "First Name": "Mohamad Naser",
-    "ComplaintID": "C171",
-    "Call Number": "+(123)-456-789",
+    "Email": "john.smith@example.com",
+    "First Name": "John",
+    "ComplaintID": "C522",
+    "Call Number": "+(789)-012-345",
     "Complaint": {
-      "description": "The print quality is not satisfactory",
-      "title": "Print Quality Issue"
+      "description": "The printer prints but the output is blurry and smudged.",
+      "title": "Blurry and smudged printing"
     },
-    "CustomerID": "C000",
-    "PrinterID": "P003",
-    "Last Name": "Alnakshbandi",
+    "CustomerID": "C002",
+    "PrinterID": "P011",
+    "Last Name": "Smith",
+    "Date": "Fri Mar 02 14:45:22 CET 2024",
     "Location": {
-      "State": "BW",
-      "Location Number": "E13",
+      "State": "NW",
+      "Location Number": "C23",
       "Country": "Germany",
-      "Street": "Hauptstr",
-      "City": "Crailsheim"
+      "Street": "Kölner Straße",
+      "City": "Düsseldorf"
     }
   },
   {
-    "Email": "mohamad.Naser@gmail.com",
-    "First Name": "Mohamad Naser",
-    "ComplaintID": "C160",
-    "Call Number": "+(123)-456-789",
+    "Email": "anna.mayer@example.com",
+    "First Name": "Anna",
+    "ComplaintID": "C523",
+    "Call Number": "+(012)-345-678",
     "Complaint": {
-      "description": "The printer makes strange noises",
-      "title": "Printing Issues"
+      "description": "The printer is not recognizing the ink cartridge.",
+      "title": "Ink cartridge recognition issue"
     },
-    "CustomerID": "C000",
-    "PrinterID": "P004",
-    "Last Name": "Alnakshbandi",
+    "CustomerID": "C003",
+    "PrinterID": "P016",
+    "Last Name": "Mayer",
+    "Date": "Sat Mar 03 09:12:55 CET 2024",
     "Location": {
       "State": "BW",
-      "Location Number": "E13",
+      "Location Number": "D8",
       "Country": "Germany",
-      "Street": "Hauptstr",
-      "City": "Crailsheim"
+      "Street": "Stuttgarter Straße",
+      "City": "Stuttgart"
     }
   },
   {
-    "Email": "mohamad.Naser@gmail.com",
-    "First Name": "Mohamad Naser",
-    "ComplaintID": "C182",
-    "Call Number": "+(123)-456-789",
+    "Email": "anna.mayer@example.com",
+    "First Name": "Anna",
+    "ComplaintID": "C525",
+    "Call Number": "+(012)-345-678",
     "Complaint": {
-      "description": "The printer produces blurry prints",
-      "title": "Print Quality Issue"
+      "description": "The printer is not recognizing the ink cartridge.",
+      "title": "Ink cartridge recognition issue"
     },
-    "CustomerID": "C000",
-    "PrinterID": "P005",
-    "Last Name": "Alnakshbandi",
+    "CustomerID": "C003",
+    "PrinterID": "P017",
+    "Last Name": "Mayer",
+    "Date": "Sun Mar 03 09:12:55 CET 2024",
     "Location": {
       "State": "BW",
-      "Location Number": "E13",
+      "Location Number": "D8",
       "Country": "Germany",
-      "Street": "Hauptstr",
-      "City": "Crailsheim"
-    }
-  },
-  {
-    "Email": "mohamad.Naser@gmail.com",
-    "First Name": "Mohamd Naser",
-    "ComplaintID": "C305",
-    "Call Number": "+(123)-456-789",
-    "Complaint": {
-      "description": "we do not know the reason",
-      "title": "The printer does start at all"
-    },
-    "CustomerID": "C000",
-    "PrinterID": "P005",
-    "Last Name": "Alnakshabndi",
-    "Location": {
-      "State": "BW",
-      "Location Number": "E13",
-      "Country": "Germany",
-      "Street": "Hauptstr",
-      "City": "Crailsheim"
-    }
-  },
-  {
-    "Email": "mohamad@gamil.com",
-    "First Name": "Mohamad",
-    "ComplaintID": "C650",
-    "Call Number": "+(123)-456-789",
-    "Complaint": {
-      "description": "It could be the cables",
-      "title": "the printer does not start"
-    },
-    "CustomerID": "C000",
-    "PrinterID": "P001",
-    "Last Name": "Naser",
-    "Location": {
-      "State": "BW",
-      "Location Number": "E12",
-      "Country": "GErmany",
-      "Street": "Haupstra",
-      "City": "Kalrsruhe"
-    }
-  },
-  {
-    "Email": "adxwadad@gmail.com",
-    "First Name": "adwadwa",
-    "ComplaintID": "C893",
-    "Call Number": "+(123)-456-789",
-    "Complaint": {
-      "description": "dawdwadwad",
-      "title": "wadawdawdwa"
-    },
-    "CustomerID": "C000",
-    "PrinterID": "P001",
-    "Last Name": "adwwadawd",
-    "Location": {
-      "State": "wadwa",
-      "Location Number": "awdwad",
-      "Country": "dawdawd",
-      "Street": "awdawd",
-      "City": "dwadwad"
+      "Street": "Stuttgarter Straße",
+      "City": "Stuttgart"
     }
   }
 ]

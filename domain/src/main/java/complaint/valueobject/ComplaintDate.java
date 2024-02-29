@@ -1,15 +1,19 @@
 package complaint.valueobject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
 public class ComplaintDate {
     Calendar calendar = Calendar.getInstance();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
     String currentDate = dateFormat.format(calendar.getTime());
 
     public String getCurrentDate() {
         return currentDate;
+    }
+
+    public ComplaintDate() {
     }
 
     @Override
