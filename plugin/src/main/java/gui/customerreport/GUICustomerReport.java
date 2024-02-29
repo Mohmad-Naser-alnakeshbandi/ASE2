@@ -16,8 +16,6 @@ public class GUICustomerReport extends JFrame {
     private JTextField customerIdField;
     private JDateChooser startDateChooser;
     private JDateChooser endDateChooser;
-    private JButton generateBtn;
-    private JButton savedBtn;
 
     public GUICustomerReport(CustomerReportRepositoryBridge customerReportRepositoryBridge) {
         this.customerReportRepositoryBridge = customerReportRepositoryBridge;
@@ -27,7 +25,7 @@ public class GUICustomerReport extends JFrame {
         setTitle("Custom Report");
         setSize(600, 165); // Set the size to 400x400
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Creating components
@@ -37,9 +35,9 @@ public class GUICustomerReport extends JFrame {
         startDateChooser = new JDateChooser();
         JLabel endDateLabel = new JLabel("End Date:");
         endDateChooser = new JDateChooser();
-        generateBtn = new JButton("Generate Report");
+        JButton generateBtn = new JButton("Generate Report");
         generateBtn.setPreferredSize(new Dimension(150, 30)); // Set preferred size for the button
-        savedBtn = new JButton("Saved");
+        JButton savedBtn = new JButton("Saved");
         savedBtn.setPreferredSize(new Dimension(150, 30)); // Set preferred size for the button
 
         // Panels
@@ -80,5 +78,27 @@ public class GUICustomerReport extends JFrame {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
             }
         });
+
+        savedBtn.addActionListener(e -> {
+            try {
+                CustomerReport customerReport= new CustomerReport.Builder()
+                        .customerID( new CustomerID(customerIdField.getText()))
+                        .reportDate( new ReportDate(startDateChooser.getDate(),endDateChooser.getDate())).
+                        build();
+
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // Set to select directories only
+                int result = fileChooser.showSaveDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    String selectedPath = fileChooser.getSelectedFile().getAbsolutePath();
+                    customerReportRepositoryBridge.saveCustomerReport(customerReport, selectedPath);
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error: Can't save the file", JOptionPane.ERROR_MESSAGE);
+            } catch (IllegalStateException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
     }
 }

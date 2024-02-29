@@ -1,14 +1,14 @@
 package customerreport;
 
 import customerreport.entity.CustomerReport;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import success.Success;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +16,14 @@ import java.util.Map;
 
 public class CustomerReportService {
     private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
+    int amountOfComplaints = 0;
 
     public void getCustomerCompliantImplementation(CustomerReport customerReport) {
         String customerID = customerReport.getCustomerID().getCustomerID();
         String reportStartDate = String.valueOf(customerReport.getReportDate().getStartDate()).substring(0, 10); // Extracting day and month
-        String reportEndDate =  String.valueOf(customerReport.getReportDate().getEndDate()).substring(0, 10); // Extracting day and month
+        String reportEndDate = String.valueOf(customerReport.getReportDate().getEndDate()).substring(0, 10); // Extracting day and month
 
-        int amountOfComplaints = 0;
+
         List<Map<String, String>> complaintsList = readCustomerComplaintsFromJson();
         if (!complaintsList.isEmpty()) {
             for (Map<String, String> complaintInfo : complaintsList) {
@@ -55,7 +56,10 @@ public class CustomerReportService {
         scrollPane.setPreferredSize(table.getPreferredSize());
 
         frame.setTitle("Customer Complaints");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Change the default close operation to dispose instead of exit
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         frame.setLayout(new BorderLayout());
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.pack();
@@ -66,6 +70,7 @@ public class CustomerReportService {
         frame.setLocationRelativeTo(null); // Center the frame on the screen
         frame.setVisible(true);
     }
+
 
 
     private boolean isDateInRange(String date, String startDate, String endDate) {
@@ -100,4 +105,44 @@ public class CustomerReportService {
 
         return complaintsList;
     }
+
+    public void saveCustomerCompliantImplementation(CustomerReport customerReport, String filepath) throws IOException {
+
+        String fileContent = getString(customerReport);
+        System.out.println(customerReport);
+        System.out.println(filepath);
+
+        File directory = new File(filepath);
+        if (!directory.isDirectory()) {
+            throw new IllegalArgumentException("The provided path is not a directory.");
+        }
+
+        File file = new File(directory, "Report" + customerReport.getCustomerID().getCustomerID() + ".csv");
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(fileContent);
+        bw.close();
+
+        new Success("Report is generated", "A Report has been generated and saved in chosen location ");
+        if (!file.exists()) {
+            throw new IOException("Something went wrong, we cannot save the file!");
+        }
+    }
+
+    @NotNull
+    private String getString(CustomerReport customerReport) {
+        if (customerReport == null) {
+            throw new IllegalStateException("Firstly, you should generate a report before saving it");
+        }
+
+        String customerID = customerReport.getCustomerID().getCustomerID();
+        String reportStartDate = String.valueOf(customerReport.getReportDate().getStartDate()).substring(0, 10); // Extracting day and month
+        String reportEndDate = String.valueOf(customerReport.getReportDate().getEndDate()).substring(0, 10); // Extracting day and month
+
+        return "CustomerID ," +" Amount Of Complaints , "+ "Report Start Date, " + "Report End Date"+ "\n"+
+                customerID + "," + amountOfComplaints + "," + reportStartDate + ","+ reportEndDate
+                ;
+    }
 }
+
+
