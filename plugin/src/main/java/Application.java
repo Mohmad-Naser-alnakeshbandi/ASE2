@@ -1,6 +1,7 @@
 import gui.complaint.GUIComplaint;
 import persistence.complaint.ComplaintRepositoryBridge;
 import persistence.customerReport.CustomerReportRepositoryBridge;
+import persistence.printerReport.PrinterReportRepositoryBridge;
 
 import javax.swing.*;
 
@@ -11,7 +12,8 @@ public class Application {
             public void run() {
                 ComplaintRepositoryBridge complaintRepositoryBridge = new ComplaintRepositoryBridge();
                 CustomerReportRepositoryBridge customerReportRepositoryBridge = new CustomerReportRepositoryBridge();
-                new GUIComplaint(complaintRepositoryBridge, customerReportRepositoryBridge).init();
+                PrinterReportRepositoryBridge printerReportRepositoryBridge = new PrinterReportRepositoryBridge();
+                new GUIComplaint(complaintRepositoryBridge, customerReportRepositoryBridge, printerReportRepositoryBridge).init();
             }
         });
 

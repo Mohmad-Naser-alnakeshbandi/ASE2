@@ -24,7 +24,7 @@ public class ComplaintService {
 
     private JSONArray readJsonArrayFromFile() throws IOException {
         String jsonContent = new String(Files.readAllBytes(Paths.get(ComplaintService.COMPLAINT_FILE_PATH)));
-        // Check if the content is empty or doesn't start with '['
+
         if (jsonContent.trim().isEmpty() || !jsonContent.startsWith("[")) {
             System.out.println("Invalid or empty JSON array in the file.");
             return new JSONArray();

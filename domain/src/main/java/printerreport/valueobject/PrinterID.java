@@ -1,4 +1,4 @@
-package complaint.valueobject;
+package printerreport.valueobject;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ public class PrinterID {
 
     private void validatePrinterID(String printerID) throws IOException {
         // Ensure the printer ID follows the format "P" followed by 3 numbers
-        if (!printerID.matches("P\\d{2}")) {
+        if (!printerID.matches("P\\d{3}")) {
             throw new IOException("Invalid printer ID format");
         }
     }

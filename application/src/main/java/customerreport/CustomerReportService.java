@@ -19,6 +19,8 @@ public class CustomerReportService {
     int amountOfComplaints = 0;
 
     public void getCustomerCompliantImplementation(CustomerReport customerReport) {
+
+
         String customerID = customerReport.getCustomerID().getCustomerID();
         String reportStartDate = String.valueOf(customerReport.getReportDate().getStartDate()).substring(0, 10); // Extracting day and month
         String reportEndDate = String.valueOf(customerReport.getReportDate().getEndDate()).substring(0, 10); // Extracting day and month

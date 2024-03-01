@@ -3,8 +3,10 @@ import colors.UsedColors;
 import complaint.entity.Complaint;
 import complaint.valueobject.*;
 import gui.customerreport.GUICustomerReport;
+import gui.printerreport.GUIPrinterReport;
 import persistence.complaint.ComplaintRepositoryBridge;
 import persistence.customerReport.CustomerReportRepositoryBridge;
+import persistence.printerReport.PrinterReportRepositoryBridge;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,9 +18,13 @@ public class GUIComplaint extends Component {
 
     private final ComplaintRepositoryBridge complaintRepositoryBridge;
     private final CustomerReportRepositoryBridge customerReportRepositoryBridge;
-    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge, CustomerReportRepositoryBridge customerReportRepositoryBridge) {
+
+    final PrinterReportRepositoryBridge printerReportRepositoryBridge;
+
+    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge, CustomerReportRepositoryBridge customerReportRepositoryBridge, PrinterReportRepositoryBridge printerReportRepositoryBridge) {
         this.complaintRepositoryBridge = complaintRepositoryBridge;
         this.customerReportRepositoryBridge = customerReportRepositoryBridge;
+        this.printerReportRepositoryBridge = printerReportRepositoryBridge;
     }
 
     public void init() {
@@ -146,7 +152,10 @@ public class GUIComplaint extends Component {
             customReport.init();
         });
         printerReportButton.addActionListener(e -> {
+                PrinterReportRepositoryBridge printerReportRepositoryBridge = new PrinterReportRepositoryBridge();
 
+            GUIPrinterReport printerReport= new GUIPrinterReport(printerReportRepositoryBridge);
+            printerReport.init();
         });
         weeklyReportButton.addActionListener(e -> {
 

@@ -1,5 +1,4 @@
 package customerreport.entity;
-
 import customerreport.valueobject.CustomerID;
 import customerreport.valueobject.ReportDate;
 
