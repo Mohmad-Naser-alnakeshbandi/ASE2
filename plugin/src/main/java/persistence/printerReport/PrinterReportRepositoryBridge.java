@@ -16,6 +16,6 @@ public class PrinterReportRepositoryBridge implements PrinterReportRepository {
     @Override
     public void savePrinterReport(PrinterReport printerReport, String filePath) throws IOException {
         PrinterReportService printerReportServiceService  = new PrinterReportService();
-    //    printerReportServiceService.s(customerReport, filePath);
+        printerReportServiceService.savePrinterReportImplementation(printerReport, filePath);
     }
 }

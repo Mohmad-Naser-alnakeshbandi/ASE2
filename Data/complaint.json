@@ -103,5 +103,47 @@
       "Street": "Stuttgarter Straße",
       "City": "Stuttgart"
     }
+  },
+  {
+    "Email": "anna.mayer@example.com",
+    "First Name": "Anna",
+    "ComplaintID": "C527",
+    "Call Number": "+(012)-345-678",
+    "Complaint": {
+      "description": "The printer is not recognizing the ink cartridge.",
+      "title": "Ink cartridge recognition issue"
+    },
+    "CustomerID": "C001",
+    "PrinterID": "P027",
+    "Last Name": "Mayer",
+    "Date": "Sun Mar 03 09:12:55 CET 2024",
+    "Location": {
+      "State": "BW",
+      "Location Number": "D8",
+      "Country": "Germany",
+      "Street": "Stuttgarter Straße",
+      "City": "Stuttgart"
+    }
+  },
+  {
+    "Email": "anna.mayer@example.com",
+    "First Name": "Anna",
+    "ComplaintID": "C528",
+    "Call Number": "+(012)-345-678",
+    "Complaint": {
+      "description": "The printer is not recognizing the ink cartridge.",
+      "title": "Software Issue"
+    },
+    "CustomerID": "C002",
+    "PrinterID": "P027",
+    "Last Name": "Mayer",
+    "Date": "Sun Mar 03 09:12:55 CET 2024",
+    "Location": {
+      "State": "BW",
+      "Location Number": "D8",
+      "Country": "Germany",
+      "Street": "Stuttgarter Straße",
+      "City": "Stuttgart"
+    }
   }
 ]

@@ -1,5 +1,8 @@
 package gui.printerreport;
 
+import customerreport.entity.CustomerReport;
+import customerreport.valueobject.CustomerID;
+import customerreport.valueobject.ReportDate;
 import persistence.printerReport.PrinterReportRepositoryBridge;
 import printerreport.entity.PrinterReport;
 import printerreport.valueobject.PrinterID;
@@ -60,6 +63,27 @@ public class GUIPrinterReport extends JFrame {
             }
             catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "your input in incorrect", JOptionPane.ERROR_MESSAGE);
+            } catch (IllegalStateException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+
+        saveButton.addActionListener(e -> {
+            try {
+                PrinterReport printerReport = new PrinterReport.Builder().
+                        setPrinterID(new PrinterID(printerIDField.getText()))
+                        .build();
+
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // Set to select directories only
+                int result = fileChooser.showSaveDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    String selectedPath = fileChooser.getSelectedFile().getAbsolutePath();
+                    printerReportRepositoryBridge.savePrinterReport(printerReport, selectedPath);
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error: Can't save the file", JOptionPane.ERROR_MESSAGE);
             } catch (IllegalStateException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
             }

@@ -1,39 +1,41 @@
 package printerreport;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import printerreport.entity.PrinterReport;
 import success.Success;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PrinterReportService {
     private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
-    int amountOfComplaints = 0;
+
+    private List<Map<String, String>> complaints = new ArrayList<>(); // Initialization here
+
+    public List<Map<String, String>> getComplaints() {
+        return complaints;
+    }
 
     public void getPrinterCompliantImplementation(PrinterReport printerReport) {
         String printerID = printerReport.getPrinterID().getPrinterID();
+        complaints = readComplaintFromJson(printerID);
 
-        List<String> customerIDs = readCustomerIDsFromJson(printerID);
-        if (!customerIDs.isEmpty()) {
-            System.out.println("Customer IDs associated with Printer ID " + printerID + ":");
-            for (String customerID : customerIDs) {
-                System.out.println(customerID);
-                amountOfComplaints++;
-            }
-            showResult(printerID, amountOfComplaints);
+        if (!complaints.isEmpty()) {
+            showResult(printerID, complaints);
         } else {
             System.out.println("No customer complaints found for Printer ID " + printerID);
         }
     }
 
-    private List<String> readCustomerIDsFromJson(String printerID) {
-        List<String> customerIDs = new ArrayList<>();
+    private List<Map<String, String>> readComplaintFromJson(String printerID) {
+        List<Map<String, String>> complaints = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(COMPLAINT_FILE_PATH))) {
             StringBuilder sb = new StringBuilder();
@@ -45,22 +47,98 @@ public class PrinterReportService {
             JSONArray jsonArray = new JSONArray(sb.toString());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String customerID = jsonObject.getString("CustomerID");
                 String jsonPrinterID = jsonObject.optString("PrinterID", null);
 
-                if (customerID != null && jsonPrinterID != null && jsonPrinterID.equals(printerID)) {
-                    customerIDs.add(customerID);
+                if (jsonPrinterID != null && jsonPrinterID.equals(printerID)) {
+                    Map<String, String> complaint = new HashMap<>();
+                    complaint.put("CustomerID", jsonObject.getString("CustomerID"));
+                    JSONObject complaintObject = jsonObject.getJSONObject("Complaint");
+                    complaint.put("Title", complaintObject.getString("title"));
+                    complaint.put("Description", complaintObject.getString("description"));
+                    complaints.add(complaint);
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             System.err.println("Error reading JSON file: " + e.getMessage());
         }
 
-        return customerIDs;
+        return complaints;
     }
 
-    private void showResult(String printerID, int amountOfComplaints) {
-        System.out.println("Total amount of complaints for Printer ID " + printerID + ": " + amountOfComplaints);
-        new Success("Printer Report Generated", "A Printer Report has been generated for Printer ID " + printerID);
+    private void showResult(String printerID, List<Map<String, String>> complaints) {
+        JFrame frame = new JFrame();
+        frame.setTitle("Printer Complaints Report");
+
+        JLabel result = new JLabel("Total amount of complaints for Printer ID " + printerID + ": " + complaints.size());
+
+        String[] columnHeaders = {"CustomerID", "Complaint title", "Complaint description"};
+        Object[][] data = new Object[complaints.size()][3];
+
+        for (int i = 0; i < complaints.size(); i++) {
+            Map<String, String> complaint = complaints.get(i);
+            data[i][0] = complaint.get("CustomerID");
+            data[i][1] = complaint.get("Title");
+            data[i][2] = complaint.get("Description");
+        }
+
+        JTable table = new JTable(data, columnHeaders);
+        table.setEnabled(false);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(800, 400));
+
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        frame.add(result, BorderLayout.NORTH);
+        frame.add(scrollPane, BorderLayout.CENTER);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    public void savePrinterReportImplementation(PrinterReport printerReport, String filePath) throws IOException {
+        String printerID = printerReport.getPrinterID().getPrinterID();
+
+        // Retrieve complaints after getting the printer complaints
+        getPrinterCompliantImplementation(printerReport);
+        List<Map<String, String>> complaints = getComplaints();
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(filePath + "/" + printerID + ".csv"));
+            StringBuilder fileContent = new StringBuilder();
+
+            // Append header
+            fileContent.append("Total amount of complaints for Printer with the ID is:  ").append(printerID).append(" ").append(complaints.size()).append("\n");
+            fileContent.append("CustomerID,Complaint title,Complaint description\n");
+
+            // Append data
+            for (Map<String, String> complaint : complaints) {
+                fileContent.append(complaint.get("CustomerID")).append(",");
+                fileContent.append(complaint.get("Title")).append(",");
+                fileContent.append(complaint.get("Description")).append("\n");
+            }
+
+            // Write content to file
+            writer.write(fileContent.toString());
+            new Success("Report is generated", "A Report has been generated and saved in chosen location ");
+
+        } catch (IOException e) {
+            // If an error occurs during file writing, throw IOException
+            throw new IOException("Error saving printer report: " + e.getMessage());
+        } finally {
+            // Close the writer in the finally block to ensure resources are properly released
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    // Log or handle any errors that occur during closing the writer
+                    System.err.println("Error closing writer: " + e.getMessage());
+                }
+            }
+        }
     }
 }
+
+
+
