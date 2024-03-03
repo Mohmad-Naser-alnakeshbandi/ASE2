@@ -1,5 +1,6 @@
 [
   {
+    "Status": "receive",
     "Email": "mohamad@gmail.com",
     "First Name": "Lukas",
     "ComplaintID": "C520",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "Status": "receive",
     "Email": "jane.doe@example.com",
     "First Name": "Jane",
     "ComplaintID": "C521",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "Status": "receive",
     "Email": "john.smith@example.com",
     "First Name": "John",
     "ComplaintID": "C522",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "Status": "receive",
     "Email": "anna.mayer@example.com",
     "First Name": "Anna",
     "ComplaintID": "C523",
@@ -84,6 +88,7 @@
     }
   },
   {
+    "Status": "receive",
     "Email": "anna.mayer@example.com",
     "First Name": "Anna",
     "ComplaintID": "C525",
@@ -105,6 +110,7 @@
     }
   },
   {
+    "Status": "receive",
     "Email": "anna.mayer@example.com",
     "First Name": "Anna",
     "ComplaintID": "C527",
@@ -126,6 +132,7 @@
     }
   },
   {
+    "Status": "receive",
     "Email": "anna.mayer@example.com",
     "First Name": "Anna",
     "ComplaintID": "C528",
@@ -144,6 +151,28 @@
       "Country": "Germany",
       "Street": "Stuttgarter Straße",
       "City": "Stuttgart"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "JohnFra@gmail.com",
+    "First Name": "John",
+    "ComplaintID": "C392",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require a update to version 8.1",
+      "title": "The printer need an updatd"
+    },
+    "CustomerID": "C016",
+    "PrinterID": "P081",
+    "Last Name": "FranceYO",
+    "Date": "Sun Mar 03 11:53:58 CET 2024",
+    "Location": {
+      "State": "PAris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
     }
   }
 ]

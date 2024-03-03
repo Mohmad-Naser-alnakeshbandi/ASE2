@@ -37,15 +37,8 @@ public class ComplaintService {
         boolean isContractValid;
         isContractValid = validateContract(complaint.getCustomerID().toString(), complaint.getPrinterID().toString());
         if (isContractValid) {
+
             JSONObject jsonObject = new JSONObject();
-
-            if (complaint.getComplaintDate() != null) {
-                jsonObject.put("Date", complaint.getComplaintDate().getCurrentDate());
-            } else {
-                // Handle the case where complaint date is null
-                jsonObject.put("Date", "Unknown");
-            }
-
             jsonObject.put("ComplaintID", complaint.getComplaintID());
             jsonObject.put("Date",complaint.getComplaintDate());
             jsonObject.put("First Name", complaint.getName().getFirstName());
@@ -67,11 +60,16 @@ public class ComplaintService {
             complaintInfo.put("title", complaint.getDescription().getTitle());
             complaintInfo.put("description", complaint.getDescription().getBody());
             jsonObject.put("Complaint", complaintInfo);
+
+            // Add the status field based on the ComplaintState enum
+            jsonObject.put("Status", complaint.getComplaintState().toString());
+
             return jsonObject;
         }
 
         return null;
     }
+
 
     public static boolean validateContract(String customerID, String printerID) throws IOException {
 

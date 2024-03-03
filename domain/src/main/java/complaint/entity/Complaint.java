@@ -14,6 +14,8 @@ public class Complaint {
     private final ComplaintID complaintID;
     private final ComplaintDate complaintDate;
 
+    private final ComplaintState complaintState;
+
     private Complaint(Builder builder) {
         this.customerName = builder.customerName;
         this.description = builder.description;
@@ -23,7 +25,8 @@ public class Complaint {
         this.location = builder.location;
         this.printerID = builder.printerID;
         this.complaintID = builder.complaintID;
-        this.complaintDate = builder.complaintDate; // Set date
+        this.complaintDate = builder.complaintDate;
+        this.complaintState= builder.complaintState;
     }
     public CustomerName getName() {
         return customerName;
@@ -60,6 +63,9 @@ public class Complaint {
         return complaintDate;
     }
 
+    public ComplaintState getComplaintState() {
+        return complaintState;
+    }
     public static class Builder {
 
         private CustomerName customerName;
@@ -70,8 +76,8 @@ public class Complaint {
         private CustomerLocation location;
         private PrinterID printerID;
         private ComplaintID complaintID;
-
         private ComplaintDate complaintDate;
+        private  ComplaintState complaintState;
 
         public Builder() {
             // Default constructor
@@ -120,7 +126,10 @@ public class Complaint {
             return this;
         }
 
-
+        public Builder complaintState(ComplaintState complaintState) {
+            this.complaintState = complaintState;
+            return this;
+        }
 
         public Complaint build() {
             return new Complaint(this);
@@ -137,6 +146,7 @@ public class Complaint {
                 + "location: "+location.getCountry() +"-"+location.getState()+"-"+location.getCity()+"-"+location.getStreet()+"-"+location.getNumber() + "\n"
                 + "printerID: "+ printerID.getPrinterID()+ "\n"
                 + "complaintID: "+ complaintID.getComplaintId()+"\n"
-                + "date:"+ complaintDate.getCurrentDate();
+                + "date: "+ complaintDate.getCurrentDate() + "\n"
+                + "state: "+ complaintState;
     }
 }

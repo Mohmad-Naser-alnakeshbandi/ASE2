@@ -174,6 +174,7 @@ public class GUIComplaint extends Component {
                         .printerID(new PrinterID(printerIDTextField.getText()))
                         .complaintID(new ComplaintID())
                         .complaintDate(new ComplaintDate())
+                        .complaintState(ComplaintState.RECEIVE)
                         .build();
                 complaintRepositoryBridge.addComplaint(complaint);
 
