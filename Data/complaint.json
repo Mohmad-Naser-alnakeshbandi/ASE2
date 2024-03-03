@@ -1,156 +1,24 @@
 [
   {
     "Status": "receive",
-    "Email": "mohamad@gmail.com",
-    "First Name": "Lukas",
-    "ComplaintID": "C520",
-    "Call Number": "+(123)-456-789",
-    "Complaint": {
-      "description": "It could be the cable or the software update we do not know really what is going wrong",
-      "title": "The printer does not start"
-    },
-    "CustomerID": "C000",
-    "PrinterID": "P001",
-    "Last Name": "Genz",
-    "Date": "Wed Feb 28 21:34:14 CET 2024",
-    "Location": {
-      "State": "BW",
-      "Location Number": "A12",
-      "Country": "Germany",
-      "Street": "Hauptstraße",
-      "City": "Crailsheim"
-    }
-  },
-  {
-    "Status": "receive",
-    "Email": "jane.doe@example.com",
-    "First Name": "Jane",
-    "ComplaintID": "C521",
-    "Call Number": "+(456)-789-012",
-    "Complaint": {
-      "description": "The printer is making a loud noise and not printing correctly",
-      "title": "Printer noise and printing issue"
-    },
-    "CustomerID": "C001",
-    "PrinterID": "P006",
-    "Last Name": "Doe",
-    "Date": "Thu Mar 01 10:22:33 CET 2024",
-    "Location": {
-      "State": "BY",
-      "Location Number": "B15",
-      "Country": "Germany",
-      "Street": "Münchner Straße",
-      "City": "Nuremberg"
-    }
-  },
-  {
-    "Status": "receive",
-    "Email": "john.smith@example.com",
+    "Email": "JohnFra@gmail.com",
     "First Name": "John",
-    "ComplaintID": "C522",
-    "Call Number": "+(789)-012-345",
+    "ComplaintID": "C392",
+    "Call Number": "+(123)-456-678",
     "Complaint": {
-      "description": "The printer prints but the output is blurry and smudged.",
-      "title": "Blurry and smudged printing"
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
     },
-    "CustomerID": "C002",
-    "PrinterID": "P011",
-    "Last Name": "Smith",
-    "Date": "Fri Mar 02 14:45:22 CET 2024",
+    "CustomerID": "C016",
+    "PrinterID": "P081",
+    "Last Name": "FranceYO",
+    "Date": "Mon Mar 04 11:53:58 CET 2024",
     "Location": {
-      "State": "NW",
-      "Location Number": "C23",
-      "Country": "Germany",
-      "Street": "Kölner Straße",
-      "City": "Düsseldorf"
-    }
-  },
-  {
-    "Status": "receive",
-    "Email": "anna.mayer@example.com",
-    "First Name": "Anna",
-    "ComplaintID": "C523",
-    "Call Number": "+(012)-345-678",
-    "Complaint": {
-      "description": "The printer is not recognizing the ink cartridge.",
-      "title": "Ink cartridge recognition issue"
-    },
-    "CustomerID": "C003",
-    "PrinterID": "P016",
-    "Last Name": "Mayer",
-    "Date": "Sat Mar 03 09:12:55 CET 2024",
-    "Location": {
-      "State": "BW",
-      "Location Number": "D8",
-      "Country": "Germany",
-      "Street": "Stuttgarter Straße",
-      "City": "Stuttgart"
-    }
-  },
-  {
-    "Status": "receive",
-    "Email": "anna.mayer@example.com",
-    "First Name": "Anna",
-    "ComplaintID": "C525",
-    "Call Number": "+(012)-345-678",
-    "Complaint": {
-      "description": "The printer is not recognizing the ink cartridge.",
-      "title": "Ink cartridge recognition issue"
-    },
-    "CustomerID": "C003",
-    "PrinterID": "P017",
-    "Last Name": "Mayer",
-    "Date": "Sun Mar 03 09:12:55 CET 2024",
-    "Location": {
-      "State": "BW",
-      "Location Number": "D8",
-      "Country": "Germany",
-      "Street": "Stuttgarter Straße",
-      "City": "Stuttgart"
-    }
-  },
-  {
-    "Status": "receive",
-    "Email": "anna.mayer@example.com",
-    "First Name": "Anna",
-    "ComplaintID": "C527",
-    "Call Number": "+(012)-345-678",
-    "Complaint": {
-      "description": "The printer is not recognizing the ink cartridge.",
-      "title": "Ink cartridge recognition issue"
-    },
-    "CustomerID": "C001",
-    "PrinterID": "P027",
-    "Last Name": "Mayer",
-    "Date": "Sun Mar 03 09:12:55 CET 2024",
-    "Location": {
-      "State": "BW",
-      "Location Number": "D8",
-      "Country": "Germany",
-      "Street": "Stuttgarter Straße",
-      "City": "Stuttgart"
-    }
-  },
-  {
-    "Status": "receive",
-    "Email": "anna.mayer@example.com",
-    "First Name": "Anna",
-    "ComplaintID": "C528",
-    "Call Number": "+(012)-345-678",
-    "Complaint": {
-      "description": "The printer is not recognizing the ink cartridge.",
-      "title": "Software Issue"
-    },
-    "CustomerID": "C002",
-    "PrinterID": "P027",
-    "Last Name": "Mayer",
-    "Date": "Sun Mar 03 09:12:55 CET 2024",
-    "Location": {
-      "State": "BW",
-      "Location Number": "D8",
-      "Country": "Germany",
-      "Street": "Stuttgarter Straße",
-      "City": "Stuttgart"
+      "State": "Paris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
     }
   },
   {
@@ -160,19 +28,179 @@
     "ComplaintID": "C392",
     "Call Number": "+(123)-456-678",
     "Complaint": {
-      "description": "The printer does not start, it require a update to version 8.1",
-      "title": "The printer need an updatd"
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
     },
     "CustomerID": "C016",
     "PrinterID": "P081",
     "Last Name": "FranceYO",
-    "Date": "Sun Mar 03 11:53:58 CET 2024",
+    "Date": "Tue Mar 05 11:53:58 CET 2024",
     "Location": {
-      "State": "PAris",
+      "State": "Paris",
       "Location Number": "E12",
       "Country": "France",
       "Street": "Paris-Badr",
       "City": "Paris"
     }
+  },
+  {
+    "Status": "receive",
+    "Email": "JohnFra@gmail.com",
+    "First Name": "John",
+    "ComplaintID": "C392",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
+    },
+    "CustomerID": "C016",
+    "PrinterID": "P081",
+    "Last Name": "FranceYO",
+    "Date": "Wed Mar 06 11:53:58 CET 2024",
+    "Location": {
+      "State": "Paris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "JohnFra@gmail.com",
+    "First Name": "John",
+    "ComplaintID": "C392",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
+    },
+    "CustomerID": "C16ß",
+    "PrinterID": "P810",
+    "Last Name": "FranceYO",
+    "Date": "Wed Mar 06 12:53:58 CET 2024",
+    "Location": {
+      "State": "Paris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "JohnFra@gmail.com",
+    "First Name": "John",
+    "ComplaintID": "C392",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
+    },
+    "CustomerID": "C016",
+    "PrinterID": "P081",
+    "Last Name": "FranceYO",
+    "Date": "Thu Mar 07 11:53:58 CET 2024",
+    "Location": {
+      "State": "Paris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "JohnFra@gmail.com",
+    "First Name": "John",
+    "ComplaintID": "C122",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
+    },
+    "CustomerID": "C116",
+    "PrinterID": "P111",
+    "Last Name": "FranceYO",
+    "Date": "Thu Mar 07 10:53:58 CET 2024",
+    "Location": {
+      "State": "Paris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "JohnFra@gmail.com",
+    "First Name": "John",
+    "ComplaintID": "C392",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
+    },
+    "CustomerID": "C116",
+    "PrinterID": "P101",
+    "Last Name": "FranceYO",
+    "Date": "Thu Mar 07 15:53:58 CET 2024",
+    "Location": {
+      "State": "Paris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "JohnFra@gmail.com",
+    "First Name": "John",
+    "ComplaintID": "C392",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
+    },
+    "CustomerID": "C016",
+    "PrinterID": "P081",
+    "Last Name": "FranceYO",
+    "Date": "Fri Mar 08 11:53:58 CET 2024",
+    "Location": {
+      "State": "Paris",
+      "Location Number": "E12",
+      "Country": "France",
+      "Street": "Paris-Badr",
+      "City": "Paris"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "MohamadNaser@gmail.com",
+    "First Name": "Mohamad",
+    "ComplaintID": "C901",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The printer does not start, it require an update to version 8.1",
+      "title": "The printer needs an update"
+    },
+    "CustomerID": "C015",
+    "PrinterID": "P080",
+    "Last Name": "MohamadNaser",
+    "Date": "Fri Mar 08 12:53:58 CET 2024",
+    "Location": {
+      "State": "BW",
+      "Location Number": "A10",
+      "Country": "Germany",
+      "Street": "Hautpstraße",
+      "City": "Crailsheim"
+    }
   }
+
+
+
+
+
+
 ]
