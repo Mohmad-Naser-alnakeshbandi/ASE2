@@ -4,9 +4,11 @@ import complaint.entity.Complaint;
 import complaint.valueobject.*;
 import gui.customerreport.GUICustomerReport;
 import gui.printerreport.GUIPrinterReport;
+import gui.weeklyreport.GUIWeeklyReport;
 import persistence.complaint.ComplaintRepositoryBridge;
 import persistence.customerReport.CustomerReportRepositoryBridge;
 import persistence.printerReport.PrinterReportRepositoryBridge;
+import persistence.weeklyReport.WeeklyReportRepositoryBridge;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +20,14 @@ public class GUIComplaint extends Component {
 
     private final ComplaintRepositoryBridge complaintRepositoryBridge;
     private final CustomerReportRepositoryBridge customerReportRepositoryBridge;
-
     final PrinterReportRepositoryBridge printerReportRepositoryBridge;
+    final WeeklyReportRepositoryBridge weeklyReportRepositoryBridge;
 
-    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge, CustomerReportRepositoryBridge customerReportRepositoryBridge, PrinterReportRepositoryBridge printerReportRepositoryBridge) {
+    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge, CustomerReportRepositoryBridge customerReportRepositoryBridge, PrinterReportRepositoryBridge printerReportRepositoryBridge, WeeklyReportRepositoryBridge weeklyReportRepositoryBridge) {
         this.complaintRepositoryBridge = complaintRepositoryBridge;
         this.customerReportRepositoryBridge = customerReportRepositoryBridge;
         this.printerReportRepositoryBridge = printerReportRepositoryBridge;
+        this.weeklyReportRepositoryBridge = weeklyReportRepositoryBridge;
     }
 
     public void init() {
@@ -147,18 +150,18 @@ public class GUIComplaint extends Component {
 
         customerReportButton.addActionListener(e -> {
             CustomerReportRepositoryBridge customerReportRepositoryBridge = new CustomerReportRepositoryBridge(); // Instantiate your CustomerReportRepositoryBridge
-
             GUICustomerReport customReport = new GUICustomerReport(customerReportRepositoryBridge);
             customReport.init();
         });
         printerReportButton.addActionListener(e -> {
-                PrinterReportRepositoryBridge printerReportRepositoryBridge = new PrinterReportRepositoryBridge();
-
+            PrinterReportRepositoryBridge printerReportRepositoryBridge = new PrinterReportRepositoryBridge();
             GUIPrinterReport printerReport= new GUIPrinterReport(printerReportRepositoryBridge);
             printerReport.init();
         });
         weeklyReportButton.addActionListener(e -> {
-
+            WeeklyReportRepositoryBridge weeklyReportRepositoryBridge = new WeeklyReportRepositoryBridge();
+            GUIWeeklyReport weeklyReport = new GUIWeeklyReport(weeklyReportRepositoryBridge);
+            weeklyReport.init();
         });
 
         addComplaintButton.addActionListener(e -> {

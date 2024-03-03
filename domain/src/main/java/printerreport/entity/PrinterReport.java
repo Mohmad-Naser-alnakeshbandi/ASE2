@@ -33,7 +33,7 @@ public class PrinterReport {
 
     @Override
     public String toString() {
-        return "PrinterReport{" +
+        return "Printer Report{" +
                 "printerID=" + printerID +
                 '}';
     }

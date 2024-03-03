@@ -1,8 +1,5 @@
 package gui.printerreport;
 
-import customerreport.entity.CustomerReport;
-import customerreport.valueobject.CustomerID;
-import customerreport.valueobject.ReportDate;
 import persistence.printerReport.PrinterReportRepositoryBridge;
 import printerreport.entity.PrinterReport;
 import printerreport.valueobject.PrinterID;
