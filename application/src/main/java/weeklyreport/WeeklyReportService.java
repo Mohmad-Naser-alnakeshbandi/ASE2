@@ -3,15 +3,14 @@ package weeklyreport;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import success.Success;
 import weeklyreport.entity.WeeklyReport;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +20,8 @@ import java.util.Map;
 
 public class WeeklyReportService {
     private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
+    static Map<String, Integer> complaintCountByDay = new HashMap<>();
+
 
     public void getWeeklyComplaintImplementation(WeeklyReport weeklyReport) {
         int weekNumber = weeklyReport.getSelectedWeek().getSelectedWeek();
@@ -39,7 +40,7 @@ public class WeeklyReportService {
     }
 
     private Map<String, Integer> countComplaintsByWeek(int weekNumber, int year) {
-        Map<String, Integer> complaintCountByDay = new HashMap<>();
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(COMPLAINT_FILE_PATH))) {
             StringBuilder sb = new StringBuilder();
@@ -96,6 +97,31 @@ public class WeeklyReportService {
             default:
                 return "";
         }
+    }
+
+    public static void saveWeeklyReportImplementation(WeeklyReport weeklyReport, String filePath) throws IOException {
+        int year = weeklyReport.getSelectedYear().getSelectedYear();
+        int weekNumber = weeklyReport.getSelectedWeek().getSelectedWeek();
+        StringBuilder reportData = new StringBuilder();
+        reportData.append("Year: ").append(year).append(", Week Number: ").append(weekNumber).append("\n\n");
+        reportData.append("Day").append(",").append("Amount of Complaint");
+        for (Map.Entry<String, Integer> entry : complaintCountByDay.entrySet()) {
+            reportData.append(entry.getKey()).append(",").append(entry.getValue()).append("\n");
+        }
+        File directory = new File(filePath);
+        if (!directory.isDirectory()) {
+            throw new IllegalArgumentException("The provided path is not a directory.");
+        }
+        File file = new File(directory, "Report" + year +"_"+weekNumber +".csv");
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(String.valueOf(reportData));
+        bw.close();
+        new Success("Report is generated", "A Report has been generated and saved in chosen location ");
+        if (!file.exists()) {
+            throw new IOException("Something went wrong, we cannot save the file!");
+        }
+
     }
 
     public void showResult(Map<String, Integer> complaintCountByDay, int year, int weekNumber) {

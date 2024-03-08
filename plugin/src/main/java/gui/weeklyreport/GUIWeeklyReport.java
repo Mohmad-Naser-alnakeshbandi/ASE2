@@ -2,6 +2,8 @@ package gui.weeklyreport;
 
 import org.jetbrains.annotations.NotNull;
 import persistence.weeklyReport.WeeklyReportRepositoryBridge;
+import printerreport.entity.PrinterReport;
+import printerreport.valueobject.PrinterID;
 import weeklyreport.entity.WeeklyReport;
 import weeklyreport.valueobject.SelectedWeek;
 import weeklyreport.valueobject.SelectedYear;
@@ -36,7 +38,7 @@ public class GUIWeeklyReport extends JFrame {
         JButton saveButton = new JButton("Save");
 
         generateButton.addActionListener(e -> generateReport());
-        saveButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Save button clicked!"));
+        saveButton.addActionListener(e -> saveReprot());
 
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(weekLabel);
@@ -49,6 +51,29 @@ public class GUIWeeklyReport extends JFrame {
         add(panel, BorderLayout.CENTER);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void saveReprot() {
+        try {
+            Integer selectedWeek = (Integer) weekComboBox.getSelectedItem();
+            Integer selectedYear = (Integer) yearComboBox.getSelectedItem();
+            WeeklyReport weeklyReport = new WeeklyReport.Builder()
+                    .setSelectedWeek(new SelectedWeek(selectedWeek))
+                    .setSelectedYear(new SelectedYear(selectedYear))
+                    .build();
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // Set to select directories only
+            int result = fileChooser.showSaveDialog(this);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                String selectedPath = fileChooser.getSelectedFile().getAbsolutePath();
+                weeklyReportRepositoryBridge.saveWeeklyReport(weeklyReport,selectedPath);
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error: Can't save the file", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalStateException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void generateReport() {

@@ -17,6 +17,8 @@ public class WeeklyReportRepositoryBridge implements WeeklyReportRepository {
 
     @Override
     public void saveWeeklyReport(WeeklyReport weeklyReport, String filePath) throws IOException {
+        WeeklyReportService weeklyReportService = new WeeklyReportService();
+        WeeklyReportService.saveWeeklyReportImplementation(weeklyReport, filePath);
 
     }
 }

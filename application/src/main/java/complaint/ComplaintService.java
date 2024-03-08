@@ -22,6 +22,8 @@ public class ComplaintService {
     }
 
 
+    // get Complaint by customer mehtod
+
     private JSONArray readJsonArrayFromFile() throws IOException {
         String jsonContent = new String(Files.readAllBytes(Paths.get(ComplaintService.COMPLAINT_FILE_PATH)));
 

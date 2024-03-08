@@ -31,7 +31,7 @@ public class GUIComplaint extends Component {
     }
 
     public void init() {
-        // Initialize the main JFrame
+        // Initialize the main
         JFrame window = new JFrame("Complaint Management System");
         window.setSize(1000, 800);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +72,7 @@ public class GUIComplaint extends Component {
         addComplaintButton.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         addComplaintButton.setPreferredSize(new Dimension(600, 50));
         addComplaintButton.setBackground(UsedColors.BACKGROUND_COLOR_Submit);
-        addComplaintButton.setForeground(UsedColors.Font_COLOR_Submit);
+        addComplaintButton.setForeground(UsedColors.FONT_COLOR);
 
         // Initialize labels and Input fields
         JLabel firstNameLabel = new JLabel("First Name");

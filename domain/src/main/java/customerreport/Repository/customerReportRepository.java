@@ -1,8 +1,5 @@
 package customerreport.Repository;
-
 import customerreport.entity.CustomerReport;
-
-
 import java.io.IOException;
 
 public interface customerReportRepository {
