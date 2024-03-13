@@ -3,7 +3,7 @@ import complaint.entity.Complaint;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import success.Success;
-
+import constants.constants;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 
 public class ComplaintService {
 
-    private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
-    private static final String CONTRACT_FILE_PATH = "Data/contract.json";
 
     public void addCompliantImplementation(Complaint complaint) throws IOException {
         JSONArray existingArray = readJsonArrayFromFile();
@@ -25,11 +23,10 @@ public class ComplaintService {
     // get Complaint by customer mehtod
 
     private JSONArray readJsonArrayFromFile() throws IOException {
-        String jsonContent = new String(Files.readAllBytes(Paths.get(ComplaintService.COMPLAINT_FILE_PATH)));
+        String jsonContent = new String(Files.readAllBytes(Paths.get(constants.COMPLAINT_FILE_PATH)));
 
         if (jsonContent.trim().isEmpty() || !jsonContent.startsWith("[")) {
-            System.out.println("Invalid or empty JSON array in the file.");
-            return new JSONArray();
+            throw  new IOException("Invalid or empty Data Store.");
         }
         // Parse the JSON array
         return new JSONArray(jsonContent);
@@ -75,7 +72,7 @@ public class ComplaintService {
 
     public static boolean validateContract(String customerID, String printerID) throws IOException {
 
-        Path path = Paths.get(CONTRACT_FILE_PATH);
+        Path path = Paths.get(constants.CONTRACT_FILE_PATH);
         String jsonContent = Files.readString(path);
 
         // Check if the content is a valid JSON object
@@ -108,7 +105,7 @@ public class ComplaintService {
 
     private void writeJsonArrayToFile(JSONArray jsonArray) throws IOException {
         if (jsonArray != null) {
-            Path path = Paths.get(ComplaintService.COMPLAINT_FILE_PATH);
+            Path path = Paths.get(constants.COMPLAINT_FILE_PATH);
             Files.write(path, jsonArray.toString(2).getBytes()); // The second parameter for pretty printing (indentation)
         }
     }

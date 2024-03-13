@@ -3,14 +3,15 @@ import persistence.complaint.ComplaintRepositoryBridge;
 import persistence.customerReport.CustomerReportRepositoryBridge;
 import persistence.printerReport.PrinterReportRepositoryBridge;
 import persistence.weeklyReport.WeeklyReportRepositoryBridge;
-
+import constants.constants;
 import javax.swing.*;
 
 public class Application {
     public static void main(String[] args) {
         // Set macOS/Aqua Look and Feel
+
         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            UIManager.setLookAndFeel(constants.UhTheme);
             // Update the UI of existing components
             SwingUtilities.updateComponentTreeUI(new JFrame());
         } catch (Exception e) {

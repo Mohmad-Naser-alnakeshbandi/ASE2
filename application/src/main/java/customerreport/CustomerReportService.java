@@ -1,10 +1,8 @@
 package customerreport;
-
 import customerreport.entity.CustomerReport;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import success.Success;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -16,13 +14,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-
+import constants.constants;
 import java.util.Locale;
 
 public class CustomerReportService {
-    private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
 
-    public void getCustomerCompliantImplementation(CustomerReport customerReport) {
+    public void getCustomerCompliantImplementation(CustomerReport customerReport) throws ParseException {
         String customerID = customerReport.getCustomerID().getCustomerID();
         Date reportStartDate = customerReport.getReportDate().getStartDate();
         Date reportEndDate = customerReport.getReportDate().getEndDate();
@@ -32,25 +29,25 @@ public class CustomerReportService {
         if (!complaintsList.isEmpty()) {
             for (Map<String, String> complaintInfo : complaintsList) {
                 String complaintDateString = complaintInfo.get("Date");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                Date complaintDate;
                 try {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                    Date complaintDate = dateFormat.parse(complaintDateString);
-                    if (complaintInfo.get("CustomerID").equals(customerID) &&
-                            isDateInRange(complaintDate, reportStartDate, reportEndDate)) {
-                        System.out.println("CustomerID: " + complaintInfo.get("CustomerID"));
-                        System.out.println("Date: " + complaintDateString);
-                        System.out.println("------------------------");
-                        amountOfComplaints++;
-                    }
+                    complaintDate = dateFormat.parse(complaintDateString);
                 } catch (ParseException e) {
-                    System.err.println("Error parsing date: " + e.getMessage());
+                    throw new ParseException("Error parsing date: " + e.getMessage(), 0);
+                }
+                if (complaintInfo.get("CustomerID").equals(customerID) &&
+                        isDateInRange(complaintDate, reportStartDate, reportEndDate)) {
+
+                    amountOfComplaints++;
                 }
             }
             showResult(customerID, amountOfComplaints);
         } else {
-            System.out.println("No customer complaints found.");
+            throw new ParseException("No customer complaints found.", 0);
         }
     }
+
 
     private void showResult(String customerID, int amountOfComplaints) {
         JFrame frame = new JFrame();
@@ -75,9 +72,9 @@ public class CustomerReportService {
         return date.compareTo(startDate) >= 0 && date.compareTo(endDate) <= 0;
     }
 
-    private List<Map<String, String>> readCustomerComplaintsFromJson() {
+    private List<Map<String, String>> readCustomerComplaintsFromJson() throws ParseException {
         List<Map<String, String>> complaintsList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(COMPLAINT_FILE_PATH))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(constants.COMPLAINT_FILE_PATH))) {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
@@ -94,13 +91,13 @@ public class CustomerReportService {
                 complaintsList.add(customerInfo);
                 System.out.println(customerInfo);
             }
-        } catch (IOException | org.json.JSONException e) {
-            System.err.println("Error reading JSON file: " + e.getMessage());
+        } catch (IOException e) {
+            throw new ParseException("Error reading store files", 0);
         }
         return complaintsList;
     }
 
-    public void saveCustomerCompliantImplementation(CustomerReport customerReport, String filepath) throws IOException {
+    public void saveCustomerReportImplementation(CustomerReport customerReport, String filepath) throws IOException {
         String fileContent = getString(customerReport);
         System.out.println(customerReport);
         System.out.println(filepath);

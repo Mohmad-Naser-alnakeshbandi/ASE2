@@ -1,14 +1,14 @@
 package gui.customerreport;
-
 import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
 import customerreport.entity.CustomerReport;
 import customerreport.valueobject.CustomerID;
 import customerreport.valueobject.ReportDate;
 import persistence.customerReport.CustomerReportRepositoryBridge;
-
+import constants.constants;
 import java.awt.*;
 import java.io.IOException;
+import java.text.ParseException;
 
 public class GUICustomerReport extends JFrame {
 
@@ -22,7 +22,7 @@ public class GUICustomerReport extends JFrame {
     }
 
     public void init() {
-        setTitle("Custom Report");
+        setTitle(constants.CustomerReportTitle);
         setSize(600, 165); // Set the size to 400x400
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -75,7 +75,9 @@ public class GUICustomerReport extends JFrame {
             catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "your input in incorrect", JOptionPane.ERROR_MESSAGE);
             } catch (IllegalStateException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong ", JOptionPane.ERROR_MESSAGE);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong in the data store ", JOptionPane.ERROR_MESSAGE);
             }
         });
 

@@ -3,6 +3,7 @@ package gui.printerreport;
 import persistence.printerReport.PrinterReportRepositoryBridge;
 import printerreport.entity.PrinterReport;
 import printerreport.valueobject.PrinterID;
+import constants.constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,6 @@ public class GUIPrinterReport extends JFrame {
 
     final PrinterReportRepositoryBridge printerReportRepositoryBridge;
     private JTextField printerIDField;
-    private JLabel printerIDLabel;
 
     public GUIPrinterReport(PrinterReportRepositoryBridge printerReportRepositoryBridge) {
 
@@ -21,13 +21,13 @@ public class GUIPrinterReport extends JFrame {
     }
 
     public void init() {
-        setTitle("Printer Report");
+        setTitle(constants.PrinterReportTitle);
         setSize(300,110);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         // Initialize components
-        printerIDLabel = new JLabel("Printer ID:");
+        JLabel printerIDLabel = new JLabel("Printer ID:");
         printerIDField = new JTextField(20);
         JButton generateButton = new JButton("Generate");
         JButton saveButton = new JButton("Save");

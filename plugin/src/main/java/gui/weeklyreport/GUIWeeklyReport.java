@@ -1,12 +1,10 @@
 package gui.weeklyreport;
-
 import org.jetbrains.annotations.NotNull;
 import persistence.weeklyReport.WeeklyReportRepositoryBridge;
-import printerreport.entity.PrinterReport;
-import printerreport.valueobject.PrinterID;
 import weeklyreport.entity.WeeklyReport;
 import weeklyreport.valueobject.SelectedWeek;
 import weeklyreport.valueobject.SelectedYear;
+import constants.constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +25,7 @@ public class GUIWeeklyReport extends JFrame {
     }
 
     public void init() {
-        setTitle("Weekly Report");
+        setTitle(constants.WeeklyReportTitle);
         setSize(350, 120);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -52,6 +50,8 @@ public class GUIWeeklyReport extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
+
 
     private void saveReprot() {
         try {

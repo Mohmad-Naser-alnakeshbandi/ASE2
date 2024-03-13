@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface ComplaintRepository {
     void addComplaint(Complaint complaint) throws Exception;
 
-    List<Complaint> queryComplainybyCustomer(CustomerID customerID);
+
 }
 

@@ -1,11 +1,10 @@
 package weeklyreport;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import success.Success;
 import weeklyreport.entity.WeeklyReport;
-
+import constants.constants;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -19,9 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WeeklyReportService {
-    private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
     static Map<String, Integer> complaintCountByDay = new HashMap<>();
-
 
     public void getWeeklyComplaintImplementation(WeeklyReport weeklyReport) {
         int weekNumber = weeklyReport.getSelectedWeek().getSelectedWeek();
@@ -39,16 +36,13 @@ public class WeeklyReportService {
         }
     }
 
-    private Map<String, Integer> countComplaintsByWeek(int weekNumber, int year) {
-
-
-        try (BufferedReader br = new BufferedReader(new FileReader(COMPLAINT_FILE_PATH))) {
+    private Map<String, Integer> countComplaintsByWeek(int weekNumber, int year)  {
+        try (BufferedReader br = new BufferedReader(new FileReader(constants.COMPLAINT_FILE_PATH))) {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-
             JSONArray jsonArray = new JSONArray(sb.toString());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -74,32 +68,23 @@ public class WeeklyReportService {
         } catch (IOException | JSONException e) {
             System.err.println("Error reading JSON file: " + e.getMessage());
         }
-
         return complaintCountByDay;
     }
 
     private String getDayOfWeekString(int dayOfWeek) {
-        switch (dayOfWeek) {
-            case Calendar.SUNDAY:
-                return "Sunday";
-            case Calendar.MONDAY:
-                return "Monday";
-            case Calendar.TUESDAY:
-                return "Tuesday";
-            case Calendar.WEDNESDAY:
-                return "Wednesday";
-            case Calendar.THURSDAY:
-                return "Thursday";
-            case Calendar.FRIDAY:
-                return "Friday";
-            case Calendar.SATURDAY:
-                return "Saturday";
-            default:
-                return "";
-        }
+        return switch (dayOfWeek) {
+            case Calendar.SUNDAY -> "Sunday";
+            case Calendar.MONDAY -> "Monday";
+            case Calendar.TUESDAY -> "Tuesday";
+            case Calendar.WEDNESDAY -> "Wednesday";
+            case Calendar.THURSDAY -> "Thursday";
+            case Calendar.FRIDAY -> "Friday";
+            case Calendar.SATURDAY -> "Saturday";
+            default -> "";
+        };
     }
 
-    public static void saveWeeklyReportImplementation(WeeklyReport weeklyReport, String filePath) throws IOException {
+    public  void saveWeeklyReportImplementation(WeeklyReport weeklyReport, String filePath) throws IOException {
         int year = weeklyReport.getSelectedYear().getSelectedYear();
         int weekNumber = weeklyReport.getSelectedWeek().getSelectedWeek();
         StringBuilder reportData = new StringBuilder();

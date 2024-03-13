@@ -2,7 +2,6 @@ package persistence.weeklyReport;
 import weeklyreport.Repository.WeeklyReportRepository;
 import weeklyreport.WeeklyReportService;
 import weeklyreport.entity.WeeklyReport;
-
 import java.io.IOException;
 
 public class WeeklyReportRepositoryBridge implements WeeklyReportRepository {
@@ -17,8 +16,7 @@ public class WeeklyReportRepositoryBridge implements WeeklyReportRepository {
 
     @Override
     public void saveWeeklyReport(WeeklyReport weeklyReport, String filePath) throws IOException {
-        WeeklyReportService weeklyReportService = new WeeklyReportService();
-        WeeklyReportService.saveWeeklyReportImplementation(weeklyReport, filePath);
-
+        WeeklyReportService weeklyReportService  = new WeeklyReportService();
+        weeklyReportService.saveWeeklyReportImplementation(weeklyReport, filePath);
     }
 }

@@ -1,11 +1,10 @@
 package printerreport;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import printerreport.entity.PrinterReport;
 import success.Success;
-
+import constants.constants;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 public class PrinterReportService {
-    private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
 
     private List<Map<String, String>> complaints = new ArrayList<>(); // Initialization here
 
@@ -23,21 +21,21 @@ public class PrinterReportService {
         return complaints;
     }
 
-    public void getPrinterCompliantImplementation(PrinterReport printerReport) {
+    public void getPrinterCompliantImplementation(PrinterReport printerReport) throws IOException {
         String printerID = printerReport.getPrinterID().getPrinterID();
         complaints = readComplaintFromJson(printerID);
 
         if (!complaints.isEmpty()) {
             showResult(printerID, complaints);
         } else {
-            System.out.println("No customer complaints found for Printer ID " + printerID);
+            throw  new IOException("No customer complaints found for Printer ID " + printerID);
         }
     }
 
-    private List<Map<String, String>> readComplaintFromJson(String printerID) {
+    private List<Map<String, String>> readComplaintFromJson(String printerID) throws IOException {
         List<Map<String, String>> complaints = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(COMPLAINT_FILE_PATH))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(constants.COMPLAINT_FILE_PATH))) {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
@@ -59,7 +57,7 @@ public class PrinterReportService {
                 }
             }
         } catch (IOException | JSONException e) {
-            System.err.println("Error reading JSON file: " + e.getMessage());
+            throw new IOException("Error reading store files");
         }
 
         return complaints;
@@ -103,7 +101,7 @@ public class PrinterReportService {
         getPrinterCompliantImplementation(printerReport);
         List<Map<String, String>> complaints = getComplaints();
 
-        BufferedWriter writer = null;
+        BufferedWriter writer;
         try {
             writer = new BufferedWriter(new FileWriter(filePath + "/" + printerID + ".csv"));
             StringBuilder fileContent = new StringBuilder();
@@ -126,16 +124,6 @@ public class PrinterReportService {
         } catch (IOException e) {
             // If an error occurs during file writing, throw IOException
             throw new IOException("Error saving printer report: " + e.getMessage());
-        } finally {
-            // Close the writer in the finally block to ensure resources are properly released
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    // Log or handle any errors that occur during closing the writer
-                    System.err.println("Error closing writer: " + e.getMessage());
-                }
-            }
         }
     }
 }

@@ -9,7 +9,7 @@ import persistence.complaint.ComplaintRepositoryBridge;
 import persistence.customerReport.CustomerReportRepositoryBridge;
 import persistence.printerReport.PrinterReportRepositoryBridge;
 import persistence.weeklyReport.WeeklyReportRepositoryBridge;
-
+import constants.constants;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class GUIComplaint extends Component {
 
     public void init() {
         // Initialize the main
-        JFrame window = new JFrame("Complaint Management System");
+        JFrame window = new JFrame(constants.StartScreenTitle);
         window.setSize(1000, 800);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
@@ -59,7 +59,7 @@ public class GUIComplaint extends Component {
         titlePanel.setBackground(Color.BLACK);
 
         // Add a JLabel to the titlePanel in the CENTER position
-        JLabel titleLabel = new JLabel("IPRINTER");
+        JLabel titleLabel = new JLabel(constants.CompanyLogo);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
         titleLabel.setForeground(UsedColors.Font_COLOR_Submit);
