@@ -62,7 +62,7 @@ public class GUIComplaint extends Component {
         JLabel titleLabel = new JLabel(constants.CompanyLogo);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
-        titleLabel.setForeground(UsedColors.Font_COLOR_Submit);
+        titleLabel.setForeground(UsedColors.TITlE_COLOR_TEXT);
 
         // Create buttons
         JButton customerReportButton = createButton(50, "Customer Report");
@@ -71,8 +71,8 @@ public class GUIComplaint extends Component {
         JButton addComplaintButton = new JButton("Add complaint");
         addComplaintButton.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         addComplaintButton.setPreferredSize(new Dimension(600, 50));
-        addComplaintButton.setBackground(UsedColors.BACKGROUND_COLOR_Submit);
-        addComplaintButton.setForeground(UsedColors.FONT_COLOR);
+        addComplaintButton.setBackground(UsedColors.BACKGROUND_COLOR_Button);
+        addComplaintButton.setForeground(UsedColors.FONT_COLOR_TEXT);
 
         // Initialize labels and Input fields
         JLabel firstNameLabel = new JLabel("First Name");

@@ -23,7 +23,7 @@ public class GUICustomerReport extends JFrame {
 
     public void init() {
         setTitle(constants.CustomerReportTitle);
-        setSize(600, 165); // Set the size to 400x400
+        setSize(600, 190); // Set the size to 400x400
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

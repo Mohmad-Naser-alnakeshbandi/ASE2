@@ -111,7 +111,7 @@ public class WeeklyReportService {
 
     public void showResult(Map<String, Integer> complaintCountByDay, int year, int weekNumber) {
         JFrame frame = new JFrame("Weekly Complaint Report");
-        frame.setSize(500,158);
+        frame.setSize(500,170);
         JPanel panel = new JPanel(new BorderLayout());
         JLabel label = new JLabel("Year: " + year + ", Week Number: " + weekNumber);
         JTable table = new JTable();
