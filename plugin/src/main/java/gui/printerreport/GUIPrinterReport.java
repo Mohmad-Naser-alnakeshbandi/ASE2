@@ -59,7 +59,7 @@ public class GUIPrinterReport extends JFrame {
                 printerReportRepositoryBridge.createPrinterReport(printerReport);
             }
             catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "your input in incorrect", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "A problem with the input", JOptionPane.ERROR_MESSAGE);
             } catch (IllegalStateException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
             }

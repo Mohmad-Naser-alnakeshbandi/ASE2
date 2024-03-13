@@ -1,10 +1,11 @@
 package printerreport;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import printerreport.entity.PrinterReport;
 import success.Success;
-import constants.constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PrinterReportService {
+    private static final String COMPLAINT_FILE_PATH = "Data/complaint.json";
 
     private List<Map<String, String>> complaints = new ArrayList<>(); // Initialization here
 
@@ -35,7 +37,7 @@ public class PrinterReportService {
     private List<Map<String, String>> readComplaintFromJson(String printerID) throws IOException {
         List<Map<String, String>> complaints = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(constants.COMPLAINT_FILE_PATH))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(COMPLAINT_FILE_PATH))) {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {

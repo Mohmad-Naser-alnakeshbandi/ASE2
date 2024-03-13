@@ -1,7 +1,4 @@
 package customerreport.valueobject;
-
-import errors.Errors;
-
 import java.io.IOException;
 import java.util.Objects;
 
