@@ -196,11 +196,49 @@
       "Street": "Hautpstraße",
       "City": "Crailsheim"
     }
+  },
+  {
+    "Status": "receive",
+    "Email": "Rieger@gmail.com",
+    "First Name": "Lukas",
+    "ComplaintID": "C785",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "It could be the new software update",
+      "title": "The printer does not work"
+    },
+    "CustomerID": "C015",
+    "PrinterID": "P077",
+    "Last Name": "Rieger",
+    "Date": "Fri Mar 15 23:35:57 CET 2024",
+    "Location": {
+      "State": "BW",
+      "Location Number": "12TR",
+      "Country": "Germany",
+      "Street": "Hauptstraße",
+      "City": "Crailsheim"
+    }
+  },
+  {
+    "Status": "receive",
+    "Email": "Amjad@gmail.com",
+    "First Name": "Amjad",
+    "ComplaintID": "C879",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "The Problem appear after the last update",
+      "title": "The printer is too slow"
+    },
+    "CustomerID": "C004",
+    "PrinterID": "P021",
+    "Last Name": "Alnakshbandi",
+    "Date": "Sat Mar 16 00:01:48 CET 2024",
+    "Location": {
+      "State": "Berlin",
+      "Location Number": "12H",
+      "Country": "Germany",
+      "Street": "Haupttaße",
+      "City": "Berlin"
+    }
   }
-
-
-
-
-
-
 ]
