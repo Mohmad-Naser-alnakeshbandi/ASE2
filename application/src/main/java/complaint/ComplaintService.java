@@ -36,8 +36,8 @@ public class ComplaintService {
             jsonObject.put("Date", complaint.getComplaintDate());
             jsonObject.put("First Name", complaint.getName().getFirstName());
             jsonObject.put("Last Name", complaint.getName().getLastName());
-            jsonObject.put("CustomerID", complaint.getCustomerID().toString());
-            jsonObject.put("PrinterID", complaint.getPrinterID().toString());
+            jsonObject.put("common.CustomerID", complaint.getCustomerID().toString());
+            jsonObject.put("common.PrinterID", complaint.getPrinterID().toString());
             jsonObject.put("Email", complaint.getEmail().toString());
             jsonObject.put("Call Number", complaint.getCallNumber());
 

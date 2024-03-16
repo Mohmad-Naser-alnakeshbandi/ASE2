@@ -1,8 +1,8 @@
 package gui.printerreport;
 
+import common.PrinterID;
 import persistence.printerReport.PrinterReportRepositoryBridge;
 import printerreport.entity.PrinterReport;
-import printerreport.valueobject.PrinterID;
 import constants.constants;
 
 import javax.swing.*;

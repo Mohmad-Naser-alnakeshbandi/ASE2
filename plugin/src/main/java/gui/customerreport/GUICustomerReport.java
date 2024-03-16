@@ -1,8 +1,8 @@
 package gui.customerreport;
 import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
+import common.CustomerID;
 import customerreport.entity.CustomerReport;
-import customerreport.valueobject.CustomerID;
 import customerreport.valueobject.ReportDate;
 import persistence.customerReport.CustomerReportRepositoryBridge;
 import constants.constants;

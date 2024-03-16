@@ -37,7 +37,7 @@ public class CustomerReportService {
             } catch (ParseException e) {
                 throw new ParseException("Error parsing date: " + complaintDateString, 0);
             }
-            if (complaintInfo.get("CustomerID").equals(customerID) && isDateInRange(complaintDate, startDate, endDate)) {
+            if (complaintInfo.get("common.CustomerID").equals(customerID) && isDateInRange(complaintDate, startDate, endDate)) {
                 amountOfComplaints++;
             }
         }
@@ -50,7 +50,7 @@ public class CustomerReportService {
 
     private void showResult(String customerID, int amountOfComplaints) {
         JFrame frame = new JFrame();
-        String[] columnHeaders = {"CustomerID", "Amount of Complaints"};
+        String[] columnHeaders = {"common.CustomerID", "Amount of Complaints"};
         Object[][] data = {{customerID, amountOfComplaints}};
         DefaultTableModel model = new DefaultTableModel(data, columnHeaders);
         JTable table = new JTable(model);
@@ -78,10 +78,10 @@ public class CustomerReportService {
             JSONArray jsonArray = new JSONArray(sb.toString());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String customerID = jsonObject.getString("CustomerID");
+                String customerID = jsonObject.getString("common.CustomerID");
                 String date = jsonObject.getString("Date");
                 Map<String, String> customerInfo = new HashMap<>();
-                customerInfo.put("CustomerID", customerID);
+                customerInfo.put("common.CustomerID", customerID);
                 customerInfo.put("Date", date);
                 complaintsList.add(customerInfo);
             }
@@ -113,7 +113,7 @@ public class CustomerReportService {
         String customerID = customerReport.getCustomerID().getCustomerID();
         String reportStartDate = String.valueOf(customerReport.getReportDate().getStartDate()).substring(0, 10);
         String reportEndDate = String.valueOf(customerReport.getReportDate().getEndDate()).substring(0, 10);
-        return "CustomerID ," + " Amount Of Complaints , " + "Report Start Date, " + "Report End Date" + "\n" +
+        return "common.CustomerID ," + " Amount Of Complaints , " + "Report Start Date, " + "Report End Date" + "\n" +
                 customerID + "," + "N/A" + "," + reportStartDate + "," + reportEndDate;
     }
 }

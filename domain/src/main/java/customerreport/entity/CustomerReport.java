@@ -1,5 +1,5 @@
 package customerreport.entity;
-import customerreport.valueobject.CustomerID;
+import common.CustomerID;
 import customerreport.valueobject.ReportDate;
 
 public class CustomerReport {
@@ -48,7 +48,7 @@ public class CustomerReport {
 
     @Override
     public String toString() {
-        return "CustomerID: " + customerID.getCustomerID() + "\n"
+        return "common.CustomerID: " + customerID.getCustomerID() + "\n"
                 + "Report start Date: " + reportDate.getStartDate() + "\n"
                 + "Report ende Date: " + reportDate.getEndDate();
     }

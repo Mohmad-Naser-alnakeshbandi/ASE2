@@ -1,5 +1,7 @@
 package gui.complaint;
 
+import common.CustomerID;
+import common.PrinterID;
 import persistence.complaint.ComplaintRepositoryBridge;
 import complaint.entity.Complaint;
 import complaint.valueobject.*;

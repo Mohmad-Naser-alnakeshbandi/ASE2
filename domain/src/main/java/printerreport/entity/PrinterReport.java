@@ -1,6 +1,6 @@
 package printerreport.entity;
 
-import printerreport.valueobject.PrinterID;
+import common.PrinterID;
 
 public class PrinterReport {
 
@@ -19,7 +19,7 @@ public class PrinterReport {
     public static class Builder {
         private PrinterID printerID;
 
-        // Method to set PrinterID
+        // Method to set common.PrinterID
         public Builder setPrinterID(PrinterID printerID) {
             this.printerID = printerID;
             return this; // Return the builder instance for method chaining

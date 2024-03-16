@@ -1,8 +1,6 @@
 package printerreport.Repository;
 
-import customerreport.entity.CustomerReport;
 import printerreport.entity.PrinterReport;
-import printerreport.valueobject.PrinterID;
 
 import java.io.IOException;
 
