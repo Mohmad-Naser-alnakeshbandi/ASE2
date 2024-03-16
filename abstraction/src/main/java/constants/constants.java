@@ -2,7 +2,7 @@ package constants;
 
 public class constants {
 
-    public static final String UhTheme= "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+    public static final String UITheme= "javax.swing.plaf.nimbus.NimbusLookAndFeel";
     public static final String WeeklyReportTitle = "Weekly Report";
     public static final String PrinterReportTitle = "Printer Report";
     public static final String CustomerReportTitle = "Customer Report";

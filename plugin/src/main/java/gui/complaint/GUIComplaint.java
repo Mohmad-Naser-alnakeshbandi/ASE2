@@ -1,240 +1,208 @@
 package gui.complaint;
-import colors.UsedColors;
+
+import persistence.complaint.ComplaintRepositoryBridge;
 import complaint.entity.Complaint;
 import complaint.valueobject.*;
-import gui.customerreport.GUICustomerReport;
-import gui.printerreport.GUIPrinterReport;
-import gui.weeklyreport.GUIWeeklyReport;
-import persistence.complaint.ComplaintRepositoryBridge;
-import persistence.customerReport.CustomerReportRepositoryBridge;
-import persistence.printerReport.PrinterReportRepositoryBridge;
-import persistence.weeklyReport.WeeklyReportRepositoryBridge;
-import constants.constants;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-
-
 public class GUIComplaint extends Component {
 
-    private final ComplaintRepositoryBridge complaintRepositoryBridge;
-    private final CustomerReportRepositoryBridge customerReportRepositoryBridge;
-    final PrinterReportRepositoryBridge printerReportRepositoryBridge;
-    final WeeklyReportRepositoryBridge weeklyReportRepositoryBridge;
 
-    public GUIComplaint(ComplaintRepositoryBridge complaintRepositoryBridge, CustomerReportRepositoryBridge customerReportRepositoryBridge, PrinterReportRepositoryBridge printerReportRepositoryBridge, WeeklyReportRepositoryBridge weeklyReportRepositoryBridge) {
-        this.complaintRepositoryBridge = complaintRepositoryBridge;
-        this.customerReportRepositoryBridge = customerReportRepositoryBridge;
-        this.printerReportRepositoryBridge = printerReportRepositoryBridge;
-        this.weeklyReportRepositoryBridge = weeklyReportRepositoryBridge;
-    }
+    private JTextField firstNameTextField;
+    private JTextField lastNameTextField;
+    private JTextField printerIDTextField;
+    private JTextField customerIDInputTextField;
+    private JTextField emailInputTextField;
+    private JTextField countryTextField;
+    private JTextField stateTextField;
+    private JTextField cityTextField;
+    private JTextField streetTextField;
+    private JTextField locationNumberTextField;
+    private JTextField callNumberTextField;
+    private JTextArea titleTextArea;
+    private JTextArea descriptionTextArea;
 
-    public void init() {
-        // Initialize the main
-        JFrame window = new JFrame(constants.StartScreenTitle);
-        window.setSize(1000, 800);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocationRelativeTo(null);
-        window.setResizable(false);
-        window.setLayout(null);
+    public JPanel initializeFieldsPanel() {
+        JPanel complaintPanel = new JPanel();
+        complaintPanel.setBounds(0, 110, 1000, 590);
+        complaintPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        complaintPanel.setBackground(Color.BLUE);
+        complaintPanel.setLayout(new BorderLayout());
 
-        // Initialize panels and buttons
-        JPanel titlePanel = createPanel(0, 50);
-        JPanel controlPanel = createPanel(50, 60);
-        JPanel generalInformationPanel = createPanel(110, 300);
-        JPanel complaintInformationPanel = createPanel(410, 290);
-        JPanel submitPanel = createPanel(700, 100);
-        JPanel generalInformationPanelLeft = new JPanel();
-        JPanel generalInformationPanelRight = new JPanel();
+        JPanel leftPanel = new JPanel();
+        leftPanel.setPreferredSize(new Dimension(500, 590));
+        leftPanel.setLayout(new GridLayout(11, 2, 0, 10));
 
-        // Set BorderLayout for titlePanel
-        titlePanel.setLayout(new BorderLayout());
-        generalInformationPanel.setLayout(new GridLayout(1, 2));
-        generalInformationPanelLeft.setLayout(new GridLayout(5, 2, 20, 0));
-        generalInformationPanelRight.setLayout(new GridLayout(6, 2, 20, 0));
-        complaintInformationPanel.setLayout(new GridLayout(2, 2, 20, 0));
-        submitPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JPanel rightPanel = new JPanel();
+        rightPanel.setPreferredSize(new Dimension(500, 590));
 
-        titlePanel.setBackground(Color.BLACK);
+        JLabel firstNameLabel = new JLabel("  First Name");
+        firstNameTextField = new JTextField();
+        JLabel lastNameLabel = new JLabel("  Last Name");
+        lastNameTextField = new JTextField();
+        JLabel printerIDLabel = new JLabel("  Printer ID");
+        printerIDTextField = new JTextField();
+        JLabel customerIDLabel = new JLabel("  Customer ID");
+        customerIDInputTextField = new JTextField();
+        JLabel emailLabel = new JLabel("  Email");
+        emailInputTextField = new JTextField();
+        JLabel countryLabel = new JLabel("  Country");
+        countryTextField = new JTextField();
+        JLabel stateLabel = new JLabel("  State");
+        stateTextField = new JTextField();
+        JLabel cityLabel = new JLabel("  City");
+        cityTextField = new JTextField();
+        JLabel streetLabel = new JLabel("  Street");
+        streetTextField = new JTextField();
+        JLabel locationNumberLabel = new JLabel("  Location Number");
+        locationNumberTextField = new JTextField();
+        JLabel callNumberLabel = new JLabel("  Call Number");
+        callNumberTextField = new JTextField();
 
-        // Add a JLabel to the titlePanel in the CENTER position
-        JLabel titleLabel = new JLabel(constants.CompanyLogo);
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        titleLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
-        titleLabel.setForeground(UsedColors.TITlE_COLOR_TEXT);
+        leftPanel.add(firstNameLabel);
+        leftPanel.add(firstNameTextField);
+        leftPanel.add(lastNameLabel);
+        leftPanel.add(lastNameTextField);
+        leftPanel.add(printerIDLabel);
+        leftPanel.add(printerIDTextField);
+        leftPanel.add(customerIDLabel);
+        leftPanel.add(customerIDInputTextField);
+        leftPanel.add(emailLabel);
+        leftPanel.add(emailInputTextField);
+        leftPanel.add(countryLabel);
+        leftPanel.add(countryTextField);
+        leftPanel.add(stateLabel);
+        leftPanel.add(stateTextField);
+        leftPanel.add(cityLabel);
+        leftPanel.add(cityTextField);
+        leftPanel.add(streetLabel);
+        leftPanel.add(streetTextField);
+        leftPanel.add(locationNumberLabel);
+        leftPanel.add(locationNumberTextField);
+        leftPanel.add(callNumberLabel);
+        leftPanel.add(callNumberTextField);
 
-        // Create buttons
-        JButton customerReportButton = createButton(50, "Customer Report");
-        JButton printerReportButton = createButton(375, "Printer Report");
-        JButton weeklyReportButton = createButton(700, "Weekly Report");
-        JButton addComplaintButton = new JButton("Add complaint");
-        addComplaintButton.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
-        addComplaintButton.setPreferredSize(new Dimension(600, 50));
-        addComplaintButton.setBackground(UsedColors.BACKGROUND_COLOR_Button);
-        addComplaintButton.setForeground(UsedColors.FONT_COLOR_TEXT);
-
-        // Initialize labels and Input fields
-        JLabel firstNameLabel = new JLabel("First Name");
-        JTextField firstNameTextField = new JTextField();
-        JLabel lastNameLabel = new JLabel("Last Name");
-        JTextField lastNameTextField = new JTextField();
-        JLabel printerIDLabel = new JLabel("Printer ID");
-        JTextField printerIDTextField = new JTextField();
-        JLabel customerIDLabel = new JLabel("Customer ID");
-        JTextField customerIDInputTextField = new JTextField();
-        JLabel emailLabel = new JLabel("Email");
-        JTextField emailInputTextField = new JTextField();
-        JLabel countryLabel = new JLabel("Country");
-        JTextField countryTextField = new JTextField();
-        JLabel stateLabel = new JLabel("State");
-        JTextField stateTextField = new JTextField();
-        JLabel cityLabel = new JLabel("City");
-        JTextField cityTextField = new JTextField();
-        JLabel streetLabel = new JLabel("Street");
-        JTextField streetTextField = new JTextField();
-        JLabel locationNumberLabel = new JLabel("Location Number");
-        JTextField locationNumberTextField = new JTextField();
-        JLabel callNumberLabel = new JLabel("Call Number");
-        JTextField callNumberTextField = new JTextField();
-        JLabel titlelLabel = new JLabel("Title");
-        JTextArea titleTextArea = new JTextArea();
-        titleTextArea.setLineWrap(true); // Enable line wrapping
+        JLabel titleLabel = new JLabel("  Title");
+        titleLabel.setPreferredSize(new Dimension(500, 45));
+        titleTextArea = new JTextArea(13, 45);
+        titleTextArea.setLineWrap(true);
         JScrollPane titleScrollPane = new JScrollPane(titleTextArea);
-        titleScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Set vertical scrollbar policy
-        JLabel descriptionLabel = new JLabel("Description");
-        JTextArea descriptionTextArea = new JTextArea();
-        descriptionTextArea.setLineWrap(true); // Enable line wrapping
+        titleScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        JLabel descriptionLabel = new JLabel("  Description");
+        descriptionLabel.setPreferredSize(new Dimension(500, 45));
+        descriptionTextArea = new JTextArea(13, 45);
+        descriptionTextArea.setLineWrap(true);
         JScrollPane descriptionScrollPane = new JScrollPane(descriptionTextArea);
-        descriptionScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Set vertical scrollbar policy
+        descriptionScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        // Add components to panels
-        titlePanel.add(titleLabel, BorderLayout.CENTER);
-        controlPanel.add(customerReportButton);
-        controlPanel.add(printerReportButton);
-        controlPanel.add(weeklyReportButton);
+        rightPanel.add(titleLabel);
+        rightPanel.add(titleScrollPane);
+        rightPanel.add(descriptionLabel);
+        rightPanel.add(descriptionScrollPane);
 
-        generalInformationPanel.add(generalInformationPanelLeft);
-        generalInformationPanel.add(generalInformationPanelRight);
+        complaintPanel.add(leftPanel, BorderLayout.WEST);
+        complaintPanel.add(rightPanel, BorderLayout.EAST);
 
-        generalInformationPanelLeft.add(firstNameLabel);
-        generalInformationPanelLeft.add(firstNameTextField);
-        generalInformationPanelLeft.add(lastNameLabel);
-        generalInformationPanelLeft.add(lastNameTextField);
-        generalInformationPanelLeft.add(printerIDLabel);
-        generalInformationPanelLeft.add(printerIDTextField);
-        generalInformationPanelLeft.add(customerIDLabel);
-        generalInformationPanelLeft.add(customerIDInputTextField);
-        generalInformationPanelLeft.add(emailLabel);
-        generalInformationPanelLeft.add(emailInputTextField);
-
-        generalInformationPanelRight.add(countryLabel);
-        generalInformationPanelRight.add(countryTextField);
-        generalInformationPanelRight.add(stateLabel);
-        generalInformationPanelRight.add(stateTextField);
-        generalInformationPanelRight.add(cityLabel);
-        generalInformationPanelRight.add(cityTextField);
-        generalInformationPanelRight.add(streetLabel);
-        generalInformationPanelRight.add(streetTextField);
-        generalInformationPanelRight.add(locationNumberLabel);
-        generalInformationPanelRight.add(locationNumberTextField);
-        generalInformationPanelRight.add(callNumberLabel);
-        generalInformationPanelRight.add(callNumberTextField);
-
-        complaintInformationPanel.add(titlelLabel);
-        complaintInformationPanel.add(titleScrollPane);
-        complaintInformationPanel.add(descriptionLabel);
-        complaintInformationPanel.add(descriptionScrollPane);
-        submitPanel.add(addComplaintButton);
-
-
-        customerReportButton.addActionListener(e -> {
-            CustomerReportRepositoryBridge customerReportRepositoryBridge = new CustomerReportRepositoryBridge(); // Instantiate your CustomerReportRepositoryBridge
-            GUICustomerReport customReport = new GUICustomerReport(customerReportRepositoryBridge);
-            customReport.init();
-        });
-        printerReportButton.addActionListener(e -> {
-            PrinterReportRepositoryBridge printerReportRepositoryBridge = new PrinterReportRepositoryBridge();
-            GUIPrinterReport printerReport= new GUIPrinterReport(printerReportRepositoryBridge);
-            printerReport.init();
-        });
-        weeklyReportButton.addActionListener(e -> {
-            WeeklyReportRepositoryBridge weeklyReportRepositoryBridge = new WeeklyReportRepositoryBridge();
-            GUIWeeklyReport weeklyReport = new GUIWeeklyReport(weeklyReportRepositoryBridge);
-            weeklyReport.init();
-        });
-
-        addComplaintButton.addActionListener(e -> {
-            try {
-
-                Complaint complaint = new Complaint.Builder()
-                        .name(new CustomerName(firstNameTextField.getText(), lastNameTextField.getText()))
-                        .description(new ComplaintDescription(titleTextArea.getText(), descriptionTextArea.getText()))
-                        .callNumber(new CustomerCallNumber(callNumberTextField.getText()))
-                        .email(new CustomerEmail(emailInputTextField.getText()))
-                        .customerID(new CustomerID(customerIDInputTextField.getText()))
-                        .location(new CustomerLocation(countryTextField.getText(), stateTextField.getText(), cityTextField.getText(), streetTextField.getText(), locationNumberTextField.getText()))
-                        .printerID(new PrinterID(printerIDTextField.getText()))
-                        .complaintID(new ComplaintID())
-                        .complaintDate(new ComplaintDate())
-                        .complaintState(ComplaintState.RECEIVE)
-                        .build();
-                complaintRepositoryBridge.addComplaint(complaint);
-
-                // After adding the complaint the input text field have to be empty
-                firstNameTextField.setText("");
-                lastNameTextField.setText("");
-                titleTextArea.setText("");
-                descriptionTextArea.setText("");
-                callNumberTextField.setText("");
-                emailInputTextField.setText("");
-                customerIDInputTextField.setText("");
-                countryTextField.setText("");
-                stateTextField.setText("");
-                cityTextField.setText("");
-                streetTextField.setText("");
-                locationNumberTextField.setText("");
-                printerIDTextField.setText("");
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "your input in incorrect", JOptionPane.ERROR_MESSAGE);
-            } catch (IllegalStateException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong", JOptionPane.ERROR_MESSAGE);
-            }
-        });
-
-
-        // Add panels to the main window
-        window.add(titlePanel);
-        window.add(controlPanel);
-        window.add(generalInformationPanel);
-        window.add(complaintInformationPanel);
-        window.add(submitPanel);
-
-        // Set layout manager to null for controlPanel after adding components
-        controlPanel.setLayout(null);
-
-        // Make the window visible
-        window.setVisible(true);
+        return complaintPanel;
     }
 
-    private JButton createButton(int x, String title) {
-        JButton button = new JButton(title);
-        button.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
-        button.setBackground(UsedColors.COLOR_Button_Background);
-        button.setForeground(UsedColors.COLOR_Button_Text);
-        button.setBounds(x, 5, 250, 50);
-        button.setOpaque(true);
-        return button;
+    // Getter methods for text fields
+    public JTextField getFirstNameTextField() {
+        return firstNameTextField;
     }
 
-    private JPanel createPanel(int y, int height) {
-        JPanel panel = new JPanel();
-        panel.setBounds(0, y, 1000, height);
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        return panel;
+    public JTextField getLastNameTextField() {
+        return lastNameTextField;
     }
 
+    public JTextField getPrinterIDTextField() {
+        return printerIDTextField;
+    }
 
+    public JTextField getCustomerIDInputTextField() {
+        return customerIDInputTextField;
+    }
+
+    public JTextField getEmailInputTextField() {
+        return emailInputTextField;
+    }
+
+    public JTextField getCountryTextField() {
+        return countryTextField;
+    }
+
+    public JTextField getStateTextField() {
+        return stateTextField;
+    }
+
+    public JTextField getCityTextField() {
+        return cityTextField;
+    }
+
+    public JTextField getStreetTextField() {
+        return streetTextField;
+    }
+
+    public JTextField getLocationNumberTextField() {
+        return locationNumberTextField;
+    }
+
+    public JTextField getCallNumberTextField() {
+        return callNumberTextField;
+    }
+
+    // Getter methods for text areas
+    public JTextArea getTitleTextArea() {
+        return titleTextArea;
+    }
+
+    public JTextArea getDescriptionTextArea() {
+        return descriptionTextArea;
+    }
+
+    public void addComplaint(ComplaintRepositoryBridge complaintRepositoryBridge) {
+        try {
+            Complaint complaint = new Complaint.Builder()
+                    .name(new CustomerName(getFirstNameTextField().getText(), getLastNameTextField().getText()))
+                    .description(new ComplaintDescription(getTitleTextArea().getText(), getDescriptionTextArea().getText()))
+                    .callNumber(new CustomerCallNumber(getCallNumberTextField().getText()))
+                    .email(new CustomerEmail(getEmailInputTextField().getText()))
+                    .customerID(new CustomerID(getCustomerIDInputTextField().getText()))
+                    .location(new CustomerLocation(getCountryTextField().getText(), getStateTextField().getText(), getCityTextField().getText(), getStreetTextField().getText(), getLocationNumberTextField().getText()))
+                    .printerID(new PrinterID(getPrinterIDTextField().getText()))
+                    .complaintID(new ComplaintID())
+                    .complaintDate(new ComplaintDate())
+                    .complaintState(ComplaintState.RECEIVE)
+                    .build();
+            complaintRepositoryBridge.addComplaint(complaint);
+
+            // Clear the input fields after adding the complaint
+            clearInputFields();
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Your input is incorrect", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalStateException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Method to clear input fields
+    private void clearInputFields() {
+        getFirstNameTextField().setText("");
+        getLastNameTextField().setText("");
+        getTitleTextArea().setText("");
+        getDescriptionTextArea().setText("");
+        getCallNumberTextField().setText("");
+        getEmailInputTextField().setText("");
+        getCustomerIDInputTextField().setText("");
+        getCountryTextField().setText("");
+        getStateTextField().setText("");
+        getCityTextField().setText("");
+        getStreetTextField().setText("");
+        getLocationNumberTextField().setText("");
+        getPrinterIDTextField().setText("");
+    }
 
 }

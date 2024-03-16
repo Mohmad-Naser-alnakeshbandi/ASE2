@@ -240,5 +240,27 @@
       "Street": "Haupttaße",
       "City": "Berlin"
     }
+  },
+  {
+    "Status": "receive",
+    "Email": "mohamad@gmail.com",
+    "First Name": "mohamd",
+    "ComplaintID": "C788",
+    "Call Number": "+(123)-456-678",
+    "Complaint": {
+      "description": "It fall from the disk",
+      "title": "The Printer deos not start"
+    },
+    "CustomerID": "C020",
+    "PrinterID": "P101",
+    "Last Name": "Naser",
+    "Date": "Sat Mar 16 16:06:13 CET 2024",
+    "Location": {
+      "State": "BW",
+      "Location Number": "A12",
+      "Country": "Germany",
+      "Street": "Erzbergestrape",
+      "City": "Karlsruhe"
+    }
   }
 ]
