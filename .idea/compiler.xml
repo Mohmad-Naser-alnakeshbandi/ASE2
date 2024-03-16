@@ -12,5 +12,8 @@
         <module name="abstraction" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="test" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
