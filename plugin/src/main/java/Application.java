@@ -5,22 +5,26 @@ import persistence.printerReport.PrinterReportRepositoryBridge;
 import persistence.weeklyReport.WeeklyReportRepositoryBridge;
 import constants.constants;
 import javax.swing.*;
+import java.awt.*;
 
-public class Application {
+public class Application extends Component {
     public static void main(String[] args) {
-        // Set macOS/Aqua Look and Feel
 
         try {
             UIManager.setLookAndFeel(constants.UhTheme);
             // Update the UI of existing components
             SwingUtilities.updateComponentTreeUI(new JFrame());
         } catch (Exception e) {
-            // Print the stack trace if an exception occurs while setting the look and feel
-            e.printStackTrace();
-            // Handle the exception gracefully if needed
+            // If setting the custom theme fails, set the default look and feel
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                SwingUtilities.updateComponentTreeUI(new JFrame());
+            } catch (Exception ex) {
+                // Handle any further exceptions if setting the default look and feel fails
+                JOptionPane.showMessageDialog(null, "Can not start the application", "Something went Wrong", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
-        // Launch GUI in the Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
             // Initialize repository bridges
             ComplaintRepositoryBridge complaintRepositoryBridge = new ComplaintRepositoryBridge();
