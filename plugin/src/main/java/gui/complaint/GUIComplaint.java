@@ -166,6 +166,7 @@ public class GUIComplaint extends Component {
 
     public void addComplaint(ComplaintRepositoryBridge complaintRepositoryBridge) {
         try {
+
             Complaint complaint = new Complaint.Builder()
                     .name(new CustomerName(getFirstNameTextField().getText(), getLastNameTextField().getText()))
                     .description(new ComplaintDescription(getTitleTextArea().getText(), getDescriptionTextArea().getText()))
@@ -178,6 +179,9 @@ public class GUIComplaint extends Component {
                     .complaintDate(new ComplaintDate())
                     .complaintState(ComplaintState.RECEIVE)
                     .build();
+
+
+
             complaintRepositoryBridge.addComplaint(complaint);
 
             // Clear the input fields after adding the complaint

@@ -48,7 +48,7 @@ public class CustomerReport {
 
     @Override
     public String toString() {
-        return "common.CustomerID: " + customerID.getCustomerID() + "\n"
+        return "CustomerID: " + customerID.getCustomerID() + "\n"
                 + "Report start Date: " + reportDate.getStartDate() + "\n"
                 + "Report ende Date: " + reportDate.getEndDate();
     }

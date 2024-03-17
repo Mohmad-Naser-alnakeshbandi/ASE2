@@ -97,7 +97,7 @@ public class GUICustomerReport extends JFrame {
                 }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error: Can't save the file", JOptionPane.ERROR_MESSAGE);
-            } catch (IllegalStateException ex) {
+            } catch (IllegalStateException | ParseException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Something went wrong, ", JOptionPane.ERROR_MESSAGE);
             }
         });

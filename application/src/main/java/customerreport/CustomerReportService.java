@@ -4,6 +4,8 @@ import customerreport.entity.CustomerReport;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import constants.constants;
+import success.Success;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -16,15 +18,14 @@ import java.util.List;
 public class CustomerReportService {
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
 
-    public void getCustomerCompliantImplementation(CustomerReport customerReport) throws ParseException {
+    public int getCustomerCompliantImplementation(CustomerReport customerReport) throws ParseException {
         String customerID = customerReport.getCustomerID().getCustomerID();
         Date reportStartDate = customerReport.getReportDate().getStartDate();
         Date reportEndDate = customerReport.getReportDate().getEndDate();
-
         List<Map<String, String>> complaintsList = readCustomerComplaintsFromJson();
         int amountOfComplaints = countComplaintsForCustomer(complaintsList, customerID, reportStartDate, reportEndDate);
-
         showResult(customerID, amountOfComplaints);
+        return amountOfComplaints;
     }
 
     private int countComplaintsForCustomer(List<Map<String, String>> complaintsList, String customerID, Date startDate, Date endDate) throws ParseException {
@@ -37,7 +38,7 @@ public class CustomerReportService {
             } catch (ParseException e) {
                 throw new ParseException("Error parsing date: " + complaintDateString, 0);
             }
-            if (complaintInfo.get("common.CustomerID").equals(customerID) && isDateInRange(complaintDate, startDate, endDate)) {
+            if (complaintInfo.get("CustomerID").equals(customerID) && isDateInRange(complaintDate, startDate, endDate)) {
                 amountOfComplaints++;
             }
         }
@@ -50,7 +51,7 @@ public class CustomerReportService {
 
     private void showResult(String customerID, int amountOfComplaints) {
         JFrame frame = new JFrame();
-        String[] columnHeaders = {"common.CustomerID", "Amount of Complaints"};
+        String[] columnHeaders = {"CustomerID", "Amount of Complaints"};
         Object[][] data = {{customerID, amountOfComplaints}};
         DefaultTableModel model = new DefaultTableModel(data, columnHeaders);
         JTable table = new JTable(model);
@@ -78,10 +79,10 @@ public class CustomerReportService {
             JSONArray jsonArray = new JSONArray(sb.toString());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String customerID = jsonObject.getString("common.CustomerID");
+                String customerID = jsonObject.getString("CustomerID");
                 String date = jsonObject.getString("Date");
                 Map<String, String> customerInfo = new HashMap<>();
-                customerInfo.put("common.CustomerID", customerID);
+                customerInfo.put("CustomerID", customerID);
                 customerInfo.put("Date", date);
                 complaintsList.add(customerInfo);
             }
@@ -91,8 +92,11 @@ public class CustomerReportService {
         return complaintsList;
     }
 
-    public void saveCustomerReportImplementation(CustomerReport customerReport, String filepath) throws IOException {
-        String fileContent = getString(customerReport);
+    public void saveCustomerReportImplementation(CustomerReport customerReport, String filepath) throws IOException, ParseException {
+
+        int amountOfComplaints = getCustomerCompliantImplementation(customerReport);
+        String fileContent = getString(customerReport, amountOfComplaints); // Pass amountOfComplaints
+        System.out.println(fileContent);
         File directory = new File(filepath);
         if (!directory.isDirectory()) {
             throw new IllegalArgumentException("The provided path is not a directory.");
@@ -104,16 +108,21 @@ public class CustomerReportService {
         if (!file.exists()) {
             throw new IOException("Something went wrong, we cannot save the file!");
         }
+        new Success("Report is generated", "A Report has been generated and saved in chosen location ");
     }
 
-    private String getString(CustomerReport customerReport) {
+
+    private String getString(CustomerReport customerReport, int amountOfComplaints) {
+
         if (customerReport == null) {
             throw new IllegalStateException("Firstly, you should generate a report before saving it");
         }
         String customerID = customerReport.getCustomerID().getCustomerID();
         String reportStartDate = String.valueOf(customerReport.getReportDate().getStartDate()).substring(0, 10);
         String reportEndDate = String.valueOf(customerReport.getReportDate().getEndDate()).substring(0, 10);
-        return "common.CustomerID ," + " Amount Of Complaints , " + "Report Start Date, " + "Report End Date" + "\n" +
-                customerID + "," + "N/A" + "," + reportStartDate + "," + reportEndDate;
+
+
+        return "CustomerID ," + " Amount Of Complaints , " + "Report Start Date, " + "Report End Date" + "\n" +
+                customerID + "," + amountOfComplaints + "," + reportStartDate + "," + reportEndDate;
     }
 }

@@ -5,5 +5,5 @@ import java.text.ParseException;
 
 public interface customerReportRepository {
     void createCustomerReport(CustomerReport customerReport) throws IOException, ParseException;
-    void saveCustomerReport(CustomerReport customerReport, String filePath) throws IOException;
+    void saveCustomerReport(CustomerReport customerReport, String filePath) throws IOException, ParseException;
 }

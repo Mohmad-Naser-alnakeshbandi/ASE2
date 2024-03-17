@@ -47,11 +47,13 @@ public class PrinterReportService {
             JSONArray jsonArray = new JSONArray(sb.toString());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String jsonPrinterID = jsonObject.optString("common.PrinterID", null);
+                String jsonPrinterID = jsonObject.optString("PrinterID", null);
 
                 if (jsonPrinterID != null && jsonPrinterID.equals(printerID)) {
                     Map<String, String> complaint = new HashMap<>();
-                    complaint.put("common.CustomerID", jsonObject.getString("common.CustomerID"));
+                    complaint.put("CustomerID", jsonObject.getString("CustomerID"));
+                    complaint.put("Status", jsonObject.getString("Status"));
+
                     JSONObject complaintObject = jsonObject.getJSONObject("Complaint");
                     complaint.put("Title", complaintObject.getString("title"));
                     complaint.put("Description", complaintObject.getString("description"));
@@ -71,14 +73,15 @@ public class PrinterReportService {
 
         JLabel result = new JLabel("Total amount of complaints for Printer ID " + printerID + ": " + complaints.size());
 
-        String[] columnHeaders = {"common.CustomerID", "Complaint title", "Complaint description"};
-        Object[][] data = new Object[complaints.size()][3];
+        String[] columnHeaders = {"CustomerID", "Complaint title", "Complaint description", "Status"};
+        Object[][] data = new Object[complaints.size()][4];
 
         for (int i = 0; i < complaints.size(); i++) {
             Map<String, String> complaint = complaints.get(i);
-            data[i][0] = complaint.get("common.CustomerID");
+            data[i][0] = complaint.get("CustomerID");
             data[i][1] = complaint.get("Title");
             data[i][2] = complaint.get("Description");
+            data[i][3] = complaint.get("Status");
         }
 
         JTable table = new JTable(data, columnHeaders);
@@ -110,17 +113,20 @@ public class PrinterReportService {
 
             // Append header
             fileContent.append("Total amount of complaints for Printer with the ID is:  ").append(printerID).append(" ").append(complaints.size()).append("\n");
-            fileContent.append("common.CustomerID,Complaint title,Complaint description\n");
+            fileContent.append("CustomerID,Complaint title,Complaint description, Status\n");
 
             // Append data
             for (Map<String, String> complaint : complaints) {
-                fileContent.append(complaint.get("common.CustomerID")).append(",");
+                fileContent.append(complaint.get("CustomerID")).append(",");
                 fileContent.append(complaint.get("Title")).append(",");
-                fileContent.append(complaint.get("Description")).append("\n");
+                fileContent.append(complaint.get("Description")).append(",");
+                fileContent.append(complaint.get("Status")).append("\n");
+
             }
 
             // Write content to file
             writer.write(fileContent.toString());
+            writer.close();
             new Success("Report is generated", "A Report has been generated and saved in chosen location ");
 
         } catch (IOException e) {

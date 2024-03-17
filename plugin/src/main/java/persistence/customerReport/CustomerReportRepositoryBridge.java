@@ -14,7 +14,7 @@ public class CustomerReportRepositoryBridge implements customerReportRepository 
     }
 
     @Override
-    public void saveCustomerReport(CustomerReport customerReport, String filePath) throws IOException {
+    public void saveCustomerReport(CustomerReport customerReport, String filePath) throws IOException, ParseException {
         CustomerReportService customerReportService = new CustomerReportService();
         customerReportService.saveCustomerReportImplementation(customerReport, filePath);
     }

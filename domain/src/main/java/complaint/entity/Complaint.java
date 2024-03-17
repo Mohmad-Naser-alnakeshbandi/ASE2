@@ -1,5 +1,4 @@
 package complaint.entity;
-
 import common.CustomerID;
 import common.PrinterID;
 import complaint.valueobject.*;
