@@ -211,4 +211,7 @@ public class GUIComplaint extends Component {
         getPrinterIDTextField().setText("");
     }
 
+    public void getComplaints(ComplaintRepositoryBridge complaintRepositoryBridge) throws IOException {
+        complaintRepositoryBridge.getAllComplaint();
+    }
 }

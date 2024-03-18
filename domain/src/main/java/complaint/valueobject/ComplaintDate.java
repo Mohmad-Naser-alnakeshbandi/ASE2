@@ -16,6 +16,10 @@ public class ComplaintDate {
     public ComplaintDate() {
     }
 
+    public ComplaintDate(String currentDate) {
+        this.currentDate = currentDate;
+    }
+
     @Override
     public String toString() {
         return currentDate;

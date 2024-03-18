@@ -4,6 +4,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class ComplaintID {
+
+    String complaintID;
     public String getComplaintId()
     {
         int upperBound = 1000;
@@ -14,6 +16,10 @@ public class ComplaintID {
         return String.format("C%03d", randomThreeDigitNumber);
     }
     public ComplaintID() {}
+
+    public ComplaintID(String complaintID) {
+        this.complaintID = complaintID;
+    }
 
     @Override
     public String toString() {

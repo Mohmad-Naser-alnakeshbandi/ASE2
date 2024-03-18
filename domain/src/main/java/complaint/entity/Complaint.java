@@ -67,6 +67,8 @@ public class Complaint {
     public ComplaintState getComplaintState() {
         return complaintState;
     }
+
+
     public static class Builder {
 
         private CustomerName customerName;

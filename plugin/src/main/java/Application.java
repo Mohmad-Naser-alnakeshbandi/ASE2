@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+
 import constants.constants;
 import colors.UsedColors;
 import gui.complaint.GUIComplaint;
@@ -66,9 +68,10 @@ public class Application extends Component {
             titleLabel.setForeground(UsedColors.TITlE_COLOR_TEXT);
 
             // Create buttons
-            JButton customerReportButton = createButton(50, "Customer Report");
-            JButton printerReportButton = createButton(375, "Printer Report");
-            JButton weeklyReportButton = createButton(700, "Weekly Report");
+            JButton complaintButton = createButton(50, "All Complaints");
+            JButton customerReportButton = createButton(275, "Customer Report");
+            JButton printerReportButton = createButton(500, "Printer Report");
+            JButton weeklyReportButton = createButton(725, "Weekly Report");
 
 
             JButton addComplaintButton = new JButton("Add complaint");
@@ -80,6 +83,7 @@ public class Application extends Component {
 
             // Add components to panels
             titlePanel.add(titleLabel, BorderLayout.CENTER);
+            controlPanel.add(complaintButton);
             controlPanel.add(customerReportButton);
             controlPanel.add(printerReportButton);
             controlPanel.add(weeklyReportButton);
@@ -97,8 +101,15 @@ public class Application extends Component {
             // Make the window visible
             window.setVisible(true);
 
+            complaintButton.addActionListener(e -> {
+                try {
+                    guiComplaint.getComplaints(complaintRepositoryBridge);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                    //                    JOptionPane.showMessageDialog(null,"can not acces the Data store","Something went Wrong", JOptionPane.ERROR_MESSAGE);
+                }
+            });
             addComplaintButton.addActionListener(e -> {
-                // Your ActionListener code here
                 guiComplaint.addComplaint(complaintRepositoryBridge);
             });
 
@@ -125,7 +136,7 @@ public class Application extends Component {
         button.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         button.setBackground(UsedColors.COLOR_Button_Background);
         button.setForeground(UsedColors.COLOR_Button_Text);
-        button.setBounds(x, 5, 250, 50);
+        button.setBounds(x, 5, 200, 50);
         button.setOpaque(true);
         return button;
     }
