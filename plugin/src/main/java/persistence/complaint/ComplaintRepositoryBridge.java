@@ -1,5 +1,6 @@
 package persistence.complaint;
 import complaint.ComplaintService;
+import complaint.aggregate.complaints;
 import complaint.entity.Complaint;
 import complaint.Repository.ComplaintRepository;
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class ComplaintRepositoryBridge implements  ComplaintRepository{
     }
 
     @Override
-    public List<Complaint> getAllComplaint() throws IOException {
+    public List<complaints> getAllComplaint() throws IOException {
         ComplaintService complaintService = new ComplaintService();
         return complaintService.getAllComplaintImplementation();
     }

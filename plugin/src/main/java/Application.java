@@ -105,8 +105,7 @@ public class Application extends Component {
                 try {
                     guiComplaint.getComplaints(complaintRepositoryBridge);
                 } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                    //                    JOptionPane.showMessageDialog(null,"can not acces the Data store","Something went Wrong", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"can not acces the Data store","Something went Wrong", JOptionPane.ERROR_MESSAGE);
                 }
             });
             addComplaintButton.addActionListener(e -> {

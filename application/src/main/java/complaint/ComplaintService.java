@@ -2,6 +2,7 @@ package complaint;
 
 import common.CustomerID;
 import common.PrinterID;
+import complaint.aggregate.complaints;
 import complaint.entity.Complaint;
 import complaint.valueobject.*;
 import org.json.JSONArray;
@@ -80,18 +81,22 @@ public class ComplaintService {
         }
     }
 
-    public List<Complaint> getAllComplaintImplementation() throws IOException {
-        List<Complaint> complaints = new ArrayList<>();
+    public List<complaints> getAllComplaintImplementation() throws IOException {
+        List<complaints> complaintsList = new ArrayList<>();
 
         JSONArray jsonArray = readJsonArrayFromFile();
         for (Object obj : jsonArray) {
             if (obj instanceof JSONObject jsonComplaint) {
-                complaints.add(convertJsonObjectToComplaint(jsonComplaint));
+                Complaint complaint = convertJsonObjectToComplaint(jsonComplaint);
+                complaints complaintsObject = new complaints();
+                complaintsObject.setComplaint(complaint);
+                complaintsList.add(complaintsObject);
             }
         }
-        showResult(complaints);
-        return complaints;
+        showResult(complaintsList);
+        return complaintsList;
     }
+
 
     private Complaint convertJsonObjectToComplaint(JSONObject jsonObject) throws IOException {
         // Extracting data from JSONObject
@@ -144,7 +149,7 @@ public class ComplaintService {
 
     }
 
-    public void showResult(List<Complaint> complaints) {
+    public void showResult(List<complaints> complaints) {
         // Create JFrame
         JFrame frame = new JFrame("All Complaints");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,15 +161,15 @@ public class ComplaintService {
         JTable table = new JTable(tableModel);
 
         // Add complaints data to the table
-        for (Complaint complaint : complaints) {
-            String complaintID = complaint.getComplaintID().toString();
-            String date = complaint.getComplaintDate().toString();
-            String customerName = complaint.getName().getFirstName() + " " + complaint.getName().getLastName();
-            String email = complaint.getEmail().toString();
-            String callNumber = String.valueOf(complaint.getCallNumber());
-            String printerID = complaint.getPrinterID().toString();
-            String description = complaint.getDescription().getTitle() + ": " + complaint.getDescription().getBody();
-            String status = complaint.getComplaintState().toString();
+        for (complaints complaint : complaints) {
+            String complaintID = complaint.getComplaint().getComplaintID().toString();
+            String date = complaint.getComplaint().getComplaintDate().toString();
+            String customerName = complaint.getComplaint().getName().getFirstName() + " " + complaint.getComplaint().getName().getLastName();
+            String email = complaint.getComplaint().getEmail().toString();
+            String callNumber = complaint.getComplaint().getCallNumber().toString();
+            String printerID = complaint.getComplaint().getPrinterID().toString();
+            String description = complaint.getComplaint().getDescription().getTitle() + "\n " + complaint.getComplaint().getDescription().getBody();
+            String status = complaint.getComplaint().getComplaintState().toString();
 
             Object[] rowData = {complaintID, date, customerName, email, callNumber, printerID, description, status};
             tableModel.addRow(rowData);
@@ -177,3 +182,5 @@ public class ComplaintService {
         frame.setVisible(true);
     }
 }
+
+// complaint.getComplaint().toString()
