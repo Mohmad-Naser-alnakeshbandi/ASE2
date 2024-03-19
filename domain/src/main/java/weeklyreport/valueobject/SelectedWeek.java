@@ -31,8 +31,7 @@ public class SelectedWeek {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SelectedWeek)) return false;
-        SelectedWeek that = (SelectedWeek) o;
+        if (!(o instanceof SelectedWeek that)) return false;
         return selectedWeek == that.selectedWeek;
     }
 

@@ -41,8 +41,7 @@ public class SelectedYear {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SelectedYear)) return false;
-        SelectedYear that = (SelectedYear) o;
+        if (!(o instanceof SelectedYear that)) return false;
         return selectedYear == that.selectedYear;
     }
 

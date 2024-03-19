@@ -1,6 +1,7 @@
 import customerreport.valueobject.ReportDate;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,8 +10,8 @@ public class ReportDateTest {
     @Test
     void constructorTest_ValidDates() throws IOException {
         // Arrange
-        Date startDate = new Date(121, 0, 1); // January 1, 2021
-        Date endDate = new Date(121, 11, 31); // December 31, 2021
+        Date startDate = new Date(121, Calendar.JANUARY, 1); // January 1, 2021
+        Date endDate = new Date(121, Calendar.DECEMBER, 31); // December 31, 2021
 
         // Act
         ReportDate reportDate = new ReportDate(startDate, endDate);
@@ -30,8 +31,8 @@ public class ReportDateTest {
     @Test
     void constructorTest_EndDateBeforeStartDate() {
         // Arrange
-        Date startDate = new Date(121, 1, 1); // February 1, 2021
-        Date endDate = new Date(121, 0, 1); // January 1, 2021
+        Date startDate = new Date(121, Calendar.FEBRUARY, 1); // February 1, 2021
+        Date endDate = new Date(121, Calendar.JANUARY, 1); // January 1, 2021
 
         // Act & Assert
         IOException exception = assertThrows(IOException.class, () -> new ReportDate(startDate, endDate));

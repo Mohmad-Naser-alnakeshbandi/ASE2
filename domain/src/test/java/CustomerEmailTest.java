@@ -32,11 +32,8 @@ public class CustomerEmailTest {
 
     @Test
     void constructorTest_NullEmail() {
-        // Arrange
-        String nullEmail = null;
-
         // Act & Assert
-        IOException exception = assertThrows(IOException.class, () -> new CustomerEmail(nullEmail));
+        IOException exception = assertThrows(IOException.class, () -> new CustomerEmail(null));
         assertEquals("Invalid email format", exception.getMessage());
     }
 }

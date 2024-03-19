@@ -105,12 +105,10 @@ public class Application extends Component {
                 try {
                     guiComplaint.getComplaints(complaintRepositoryBridge);
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,"can not acces the Data store","Something went Wrong", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"can not access the Data store","Something went Wrong", JOptionPane.ERROR_MESSAGE);
                 }
             });
-            addComplaintButton.addActionListener(e -> {
-                guiComplaint.addComplaint(complaintRepositoryBridge);
-            });
+            addComplaintButton.addActionListener(e -> guiComplaint.addComplaint(complaintRepositoryBridge));
 
             customerReportButton.addActionListener(e -> {
                 CustomerReportRepositoryBridge customerReportRepositoryBridge = new CustomerReportRepositoryBridge(); // Instantiate your CustomerReportRepositoryBridge

@@ -50,6 +50,6 @@ public class CustomerReport {
     public String toString() {
         return "CustomerID: " + customerID.getCustomerID() + "\n"
                 + "Report start Date: " + reportDate.getStartDate() + "\n"
-                + "Report ende Date: " + reportDate.getEndDate();
+                + "Report end Date: " + reportDate.getEndDate();
     }
 }
