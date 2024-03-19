@@ -1,4 +1,5 @@
 package weeklyreport;
+import colors.UsedColors;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -167,13 +168,13 @@ public class WeeklyReportService {
                 int complaints = (int) table.getValueAt(row, 1);
                 if (day.equals(maxDay)) {
                     // Set background color for maxDay cells
-                    cellComponent.setBackground(Color.RED);
+                    cellComponent.setBackground(UsedColors.COLOR_MAX_DAY);
                 } else if (day.equals(minDay) || complaints == minComplaints) {
                     // Set background color for minDay cells and cells with complaints equal to minComplaints
-                    cellComponent.setBackground(Color.GREEN);
+                    cellComponent.setBackground(UsedColors.COLOR_MIN_DAY);
                 } else {
                     // Reset background color for other cells
-                    cellComponent.setBackground(Color.WHITE);
+                    cellComponent.setBackground(UsedColors.COLOR_ELSE_DAY);
                 }
                 return cellComponent;
             }

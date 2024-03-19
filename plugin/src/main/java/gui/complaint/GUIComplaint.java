@@ -173,13 +173,16 @@ public class GUIComplaint extends Component {
                     .callNumber(new CustomerCallNumber(getCallNumberTextField().getText()))
                     .email(new CustomerEmail(getEmailInputTextField().getText()))
                     .customerID(new CustomerID(getCustomerIDInputTextField().getText()))
-                    .location(new CustomerLocation(getCountryTextField().getText(), getStateTextField().getText(), getCityTextField().getText(), getStreetTextField().getText(), getLocationNumberTextField().getText()))
+                    .location(new CustomerLocation( getCountryTextField().getText(),
+                                                    getStateTextField().getText(),
+                                                    getCityTextField().getText(),
+                                                    getStreetTextField().getText(),
+                                                    getLocationNumberTextField().getText()))
                     .printerID(new PrinterID(getPrinterIDTextField().getText()))
                     .complaintID(new ComplaintID())
                     .complaintDate(new ComplaintDate())
                     .complaintState(ComplaintState.RECEIVE)
                     .build();
-
 
 
             complaintRepositoryBridge.addComplaint(complaint);
