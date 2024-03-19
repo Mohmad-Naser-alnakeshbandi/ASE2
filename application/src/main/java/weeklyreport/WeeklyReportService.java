@@ -21,19 +21,16 @@ import java.util.Map;
 public class WeeklyReportService {
     static Map<String, Integer> complaintCountByDay = new HashMap<>();
 
-    public void getWeeklyComplaintImplementation(WeeklyReport weeklyReport) {
+    public void getWeeklyComplaintImplementation(WeeklyReport weeklyReport) throws IOException {
         int weekNumber = weeklyReport.getSelectedWeek().getSelectedWeek();
         int year = weeklyReport.getSelectedYear().getSelectedYear();
 
         Map<String, Integer> complaintCountByDay = countComplaintsByWeek(weekNumber, year);
 
         if (!complaintCountByDay.isEmpty()) {
-            for (Map.Entry<String, Integer> entry : complaintCountByDay.entrySet()) {
-                System.out.println(entry.getKey() + ": " + entry.getValue() + " complaints");
-            }
             showResult(complaintCountByDay, year, weekNumber);
         } else {
-            System.out.println("No complaints found for week " + weekNumber + " of year " + year);
+            throw  new IOException("No complaints found for week " + weekNumber + " of year " + year);
         }
     }
 

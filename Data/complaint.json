@@ -262,5 +262,27 @@
       "Street": "Erzbergestrape",
       "City": "Karlsruhe"
     }
+  },
+  {
+    "Status": "receive",
+    "Email": "mohamadNasre@gmail.com",
+    "First Name": "Mohamad",
+    "ComplaintID": "C527",
+    "Call Number": "+(123)-456-789",
+    "Complaint": {
+      "description": "it seem as an Hardware issue",
+      "title": "The printer does not start"
+    },
+    "CustomerID": "common.CustomerID@1f2fc7",
+    "PrinterID": "P251",
+    "Last Name": "Naser",
+    "Date": "Tue Mar 19 20:24:18 CET 2024",
+    "Location": {
+      "State": "BW",
+      "Location Number": "A12",
+      "Country": "Germany",
+      "Street": "Erzbergerstraße",
+      "City": "Karlsruhe"
+    }
   }
 ]

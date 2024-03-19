@@ -16,7 +16,7 @@ public class CustomerID {
     }
 
     private void validateCustomerID(String customerID)  throws IOException {
-        // Ensure the printer ID follows the format "P" followed by 3 numbers
+        // Ensure the Customer ID follows the format "C" followed by 3 numbers
         if (!customerID.matches("C\\d{3}")) {
             throw new  IOException("Invalid Customer ID");
         }
