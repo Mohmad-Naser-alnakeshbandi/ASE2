@@ -93,6 +93,7 @@ public class ComplaintService {
                 complaintsList.add(complaintsObject);
             }
         }
+        System.out.println(complaintsList);
         showResult(complaintsList);
         return complaintsList;
     }
@@ -182,5 +183,3 @@ public class ComplaintService {
         frame.setVisible(true);
     }
 }
-
-// complaint.getComplaint().toString()
