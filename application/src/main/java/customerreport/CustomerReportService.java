@@ -96,7 +96,6 @@ public class CustomerReportService {
 
         int amountOfComplaints = getCustomerCompliantImplementation(customerReport);
         String fileContent = getString(customerReport, amountOfComplaints); // Pass amountOfComplaints
-        System.out.println(fileContent);
         File directory = new File(filepath);
         if (!directory.isDirectory()) {
             throw new IllegalArgumentException("The provided path is not a directory.");

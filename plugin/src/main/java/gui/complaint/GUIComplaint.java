@@ -172,7 +172,7 @@ public class GUIComplaint extends Component {
                     .description(new ComplaintDescription(getTitleTextArea().getText(), getDescriptionTextArea().getText()))
                     .callNumber(new CustomerCallNumber(getCallNumberTextField().getText()))
                     .email(new CustomerEmail(getEmailInputTextField().getText()))
-                    .customerID(new CustomerID(getCustomerIDInputTextField().getText()))
+                    .customerID(new CustomerID(getCustomerIDInputTextField().getText().toString()))
                     .location(new CustomerLocation( getCountryTextField().getText(),
                                                     getStateTextField().getText(),
                                                     getCityTextField().getText(),

@@ -33,6 +33,11 @@ public class CustomerID {
     public int hashCode() {
         return Objects.hash(getCustomerID());
     }
+
+    @Override
+    public String toString() {
+        return customerID;
+    }
 }
 
 

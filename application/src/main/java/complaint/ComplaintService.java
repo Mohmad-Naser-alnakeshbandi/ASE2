@@ -93,7 +93,6 @@ public class ComplaintService {
                 complaintsList.add(complaintsObject);
             }
         }
-        System.out.println(complaintsList);
         showResult(complaintsList);
         return complaintsList;
     }
@@ -153,7 +152,7 @@ public class ComplaintService {
     public void showResult(List<complaints> complaints) {
         // Create JFrame
         JFrame frame = new JFrame("All Complaints");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1200, 600);
 
         // Create JTable
